@@ -10,9 +10,9 @@ spring:
       server:
         git:
           #配置git仓库地址
-          uri: https://github.com/ZhangYi520/cloud.git
+          uri: https://github.com/ZhangYi520/SpringCloud.git
           #配置仓库路径
-          searchPaths: config
+          searchPaths: globalconfig
           #访问git仓库的用户名
           username: ZhangYi520
           #访问git仓库的用户密码
@@ -20,7 +20,7 @@ spring:
       #配置仓库的分支
       label: master
 
-eureka:
-  client:
-    service-url:
-      defaultZone: http://localhost:8890/eureka/
+#eureka:
+#  client:
+#    service-url:
+#      defaultZone: http://localhost:8890/eureka/
