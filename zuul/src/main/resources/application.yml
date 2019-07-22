@@ -1,0 +1,24 @@
+server:
+  port: 8003
+spring:
+  application:
+    name: spring-cloud-zuul
+
+#注册中心指向start    
+eureka:
+  instance:
+    instance-id: spring-cloud-zuul
+    appname: ${spring.application.name}
+  client:
+    service-url:
+      defaultZone: http://admin:1234@127.0.0.1:8888/eureka/
+#注册中心指向end
+
+zuul:
+  routes:
+    api-a:
+      path: /a/**
+      serviceId: spring-cloud-common
+    api-b:
+      path: /b/**
+      serviceId: spring-cloud-crud

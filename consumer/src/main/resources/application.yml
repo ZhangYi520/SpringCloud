@@ -1,0 +1,20 @@
+server:
+  port: 8010
+spring:
+  application:
+    name: spring-cloud-crud
+
+#注册中心指向start    
+eureka:
+  instance:
+    instance-id: spring-cloud-crud
+    appname: ${spring.application.name}
+  client:
+    service-url:
+      defaultZone: http://admin:1234@127.0.0.1:8888/eureka/
+#注册中心指向end
+
+#开启熔断
+feign:
+  hystrix:
+    enabled: true

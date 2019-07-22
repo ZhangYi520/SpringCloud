@@ -1,0 +1,26 @@
+server:
+  port: 8110
+
+spring:
+  application:
+    name: spring-cloud-config
+
+  cloud:
+    config:
+      server:
+        git:
+          #配置git仓库地址
+          uri: https://github.com/ZhangYi520/cloud.git
+          #配置仓库路径
+          searchPaths: config
+          #访问git仓库的用户名
+          username: ZhangYi520
+          #访问git仓库的用户密码
+          password: zzzyyy000
+      #配置仓库的分支
+      label: master
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8890/eureka/

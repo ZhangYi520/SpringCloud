@@ -1,0 +1,18 @@
+server:
+  port: 8001
+
+spring:
+  application:
+    name: config-client
+  cloud:
+    config:
+      label: master
+      profile: dev
+      uri: http://localhost:8110/
+#    discovery:
+#      enabled: true
+#      client:
+#        simple:
+#          local:
+#            service-id: spring-cloud-config
+
