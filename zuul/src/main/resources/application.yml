@@ -1,5 +1,5 @@
 server:
-  port: 8003
+  port: 9004
 spring:
   application:
     name: spring-cloud-zuul
@@ -11,7 +11,7 @@ eureka:
     appname: ${spring.application.name}
   client:
     service-url:
-      defaultZone: http://admin:1234@127.0.0.1:8888/eureka/
+      defaultZone: http://pre1:8001/eureka/,http://pre2:8002/eureka/
 #注册中心指向end
 
 zuul:
@@ -21,4 +21,4 @@ zuul:
       serviceId: spring-cloud-common
     api-b:
       path: /b/**
-      serviceId: spring-cloud-crud
+      serviceId: spring-cloud-consumer

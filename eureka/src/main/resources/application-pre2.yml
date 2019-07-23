@@ -1,0 +1,81 @@
+server:
+  port: 8002
+spring:
+  application:
+    name: eureka
+  profiles:
+    active: pre2
+#spring:
+#  security:
+#    basic:
+#        enable: true
+#    user:
+#        name: admin
+#        password: 1234
+#    profiles: 127.0.0.1
+eureka:
+  instance:
+    hostname: pre2
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+    service-url:
+      #      defaultZone: http://${spring.security.user.name}:${spring.security.user.password}@${eureka.instance.hostname}:${server.port}/eureka/
+      defaultZone: http://pre1:8001/eureka/
+
+
+###############################################################################
+
+#server:
+#  port: 8891
+#spring:
+#  application:
+#    name: eureka
+#  profiles:
+#    active: pre2
+##spring:
+##  security:
+##    basic:
+##        enable: true
+##    user:
+##        name: admin
+##        password: 1234
+##    profiles: 127.0.0.1
+#eureka:
+#  instance:
+#    hostname: pre2
+#  client:
+#    registerWithEureka: false
+#    fetchRegistry: false
+#    service-url:
+#      #      defaultZone: http://${spring.security.user.name}:${spring.security.user.password}@${eureka.instance.hostname}:${server.port}/eureka/
+#      defaultZone: http://pre1:8890/eureka/
+
+
+########################################################################
+
+#server:
+#  port: 8890
+#spring:
+#  application:
+#    name: eureka
+#  profiles:
+#    active: pre1
+##spring:
+##  security:
+##    basic:
+##        enable: true
+##    user:
+##        name: admin
+##        password: 1234
+##    profiles: 127.0.0.1
+#eureka:
+#  instance:
+#    hostname: pre1
+#  client:
+#    registerWithEureka: false
+#    fetchRegistry: false
+#    service-url:
+##            defaultZone: http://${spring.security.user.name}:${spring.security.user.password}@${eureka.instance.hostname}:${server.port}/eureka/
+##      defaultZone: http://pre2:8891/eureka/
+#      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/

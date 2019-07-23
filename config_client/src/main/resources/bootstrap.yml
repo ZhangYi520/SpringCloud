@@ -7,8 +7,13 @@ spring:
   cloud:
     config:
       label: master
-      profile: configclient
-      uri: http://localhost:8010/
+      profile: dev
+#      uri: http://localhost:8010/
+      discovery:
+        enabled: true
+        service-id: config-server
+
+#      file-extension: yaml
 #    discovery:
 #      enabled: true
 #      client:
@@ -16,12 +21,12 @@ spring:
 #          local:
 #            service-id: spring-cloud-config
 
-##注册中心指向start
-#eureka:
+#注册中心指向start
+eureka:
 #  instance:
 #    instance-id: config-client
 #    appname: ${spring.application.name}
-#  client:
-#    service-url:
-#      defaultZone: http://pre1:8001/eureka/,http://pre2:8002/eureka/
-##注册中心指向end
+  client:
+    service-url:
+      defaultZone: http://pre1:8001/eureka/,http://pre2:8002/eureka/
+#注册中心指向end
