@@ -1,9 +1,9 @@
 server:
-  port: 8110
+  port: 8010
 
 spring:
   application:
-    name: spring-cloud-config
+    name: config-server
 
   cloud:
     config:
@@ -20,7 +20,12 @@ spring:
       #配置仓库的分支
       label: master
 
-#eureka:
-#  client:
-#    service-url:
-#      defaultZone: http://localhost:8890/eureka/
+#注册中心指向start
+eureka:
+  instance:
+    instance-id: config-server
+    appname: ${spring.application.name}
+  client:
+    service-url:
+      defaultZone: http://pre1:8001/eureka/,http://pre2:8002/eureka/
+#注册中心指向end

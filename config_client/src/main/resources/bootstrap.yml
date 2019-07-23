@@ -1,5 +1,5 @@
 server:
-  port: 8001
+  port: 9005
 
 spring:
   application:
@@ -7,8 +7,8 @@ spring:
   cloud:
     config:
       label: master
-      profile: dev
-      uri: http://localhost:8110/
+      profile: configclient
+      uri: http://localhost:8010/
 #    discovery:
 #      enabled: true
 #      client:
@@ -16,3 +16,12 @@ spring:
 #          local:
 #            service-id: spring-cloud-config
 
+##注册中心指向start
+#eureka:
+#  instance:
+#    instance-id: config-client
+#    appname: ${spring.application.name}
+#  client:
+#    service-url:
+#      defaultZone: http://pre1:8001/eureka/,http://pre2:8002/eureka/
+##注册中心指向end
