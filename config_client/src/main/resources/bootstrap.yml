@@ -3,11 +3,11 @@ server:
 
 spring:
   application:
-    name: config-client2
+    name: config-client1
   cloud:
     config:
       label: master
-      profile: dev
+      profile: test
 #      uri: http://localhost:8010/
       discovery:
         enabled: true
