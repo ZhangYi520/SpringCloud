@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: config-client1
+    name: config-client6
   cloud:
     config:
       label: master
