@@ -5,9 +5,14 @@
     config_client ：配置中心的客户端demo
     config_server : 配置中心的客户端demo
     globalconfig : 配置中心文件管理包
-    common : 生产者demo，启动多W次实例，可用于测试负载均衡
+    common : 生产者demo，启动多次实例，可用于测试负载均衡
     consumer : 消费者demo，包含了Feign、熔断
     zuul : 路由网关
+    -------------------------------------------------------
+    zy_sso : 单点登录模块
+    zy_filesystem : 文件管理系统模块
+    
+
     
 
 
