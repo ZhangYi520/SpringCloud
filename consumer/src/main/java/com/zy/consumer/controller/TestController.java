@@ -14,12 +14,11 @@ public class TestController {
     //    @Autowired
 //    private RestTemplate restTemplate;
     @Autowired
-    Feign feign;  //依赖注入的接口
+    private Feign feign;  //依赖注入的接口
 //    private static final String MALL_CRUD_USERS_URL = "http://spring-cloud-common/";
 
     @GetMapping("/demo")
     public String getCommon(@RequestParam String name) {
-        new HashMap<>();
         System.out.println("调用服务开始---------");
 //        String s = restTemplate.getForObject(MALL_CRUD_USERS_URL+"demo?name="+name, String.class);
         String s = feign.feignDemo(name);
