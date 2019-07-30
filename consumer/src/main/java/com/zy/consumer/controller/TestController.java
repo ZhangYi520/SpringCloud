@@ -1,5 +1,6 @@
 package com.zy.consumer.controller;
 
+import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.stereotype.Component;
@@ -7,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
+import java.io.Serializable;
 import java.util.HashMap;
 
 @RestController
@@ -18,11 +20,14 @@ public class TestController {
 //    private static final String MALL_CRUD_USERS_URL = "http://spring-cloud-common/";
 
     @GetMapping("/demo")
-    public String getCommon(@RequestParam String name) {
+    @ResponseBody
+    public User getCommon(@RequestParam String name) {
         System.out.println("调用服务开始---------");
 //        String s = restTemplate.getForObject(MALL_CRUD_USERS_URL+"demo?name="+name, String.class);
-        String s = feign.feignDemo(name);
-        System.out.println("调用服务结束---------调用取得的值为：" + s);
+
+        User s = feign.feignDemo(name);
+
+        System.out.println("调用服务结束---------调用取得的值为：" + s.toString());
         return s;
     }
 }
@@ -36,15 +41,24 @@ public class TestController {
 interface Feign {
     @GetMapping("/demo")
         //这里的路径和生产者的路径一致，所以才能对应上
-    String feignDemo(@RequestParam(value = "name") String name);
+    User feignDemo(@RequestParam(value = "name") String name);
 }
 
 @Component
 class SchedualServiceHiHystric implements Feign {
 
     @Override
-    public String feignDemo(String name) {
-        return "error," + name;
+    public User feignDemo(String name) {
+       User u = new User();
+       u.setName(name);
+       u.setAge(22);
+       return u;
     }
+}
+
+@Data
+class User implements Serializable {
+    private String name;
+    private Integer age;
 }
 

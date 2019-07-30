@@ -9,8 +9,8 @@ import org.springframework.cloud.netflix.hystrix.dashboard.EnableHystrixDashboar
 import org.springframework.cloud.openfeign.EnableFeignClients;
 
 @SpringBootApplication
-@EnableEurekaClient //Eureka 客户端
-@EnableDiscoveryClient
+@EnableEurekaClient //Eureka 客户端，只适用于Eureka作为注册中心，和下面那个用法一样
+@EnableDiscoveryClient //Eureka 客户端，注册中心是其他的，不只是Eureka
 @EnableFeignClients //开启Feign的功能
 @EnableHystrix
 @EnableHystrixDashboard//开启熔断仪表盘

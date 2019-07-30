@@ -18,7 +18,7 @@ public class ZySsoApplication {
         SpringApplication.run(ZySsoApplication.class, args);
 
         System.out.println(
-                "*　　　　　　　　┏┓　　　┏┓+ +                           \n"+
+                        "*　　　　　　　　┏┓　　　┏┓+ +                           \n"+
                         "*　　　　　　　┏┛┻━━━┛┻┓ + +							\n"+
                         "*　　　　　　　┃　　　　　　　┃ 　							\n"+
                         "*　　　　　　　┃　　　━　　　┃ ++ + + +						\n"+
