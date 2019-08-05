@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zy.zy_filesystem.dao.MyFileMapper">
+
+<sql id="Base_Column_List">
+    id,userId,fileName,path,size,date,fileType
+  </sql>
+  
+    <select id="queryCount" resultType="java.lang.Integer">
+        SELECT count(*) FROM myFile
+        <where>
+            1=1
+ 			<if test="userId != null and userId !=''">
+  				and userId = #{userId}
+  			</if>
+  			<if test="fileType != null and fileType !=''">
+  				and fileType = #{fileType}
+  			</if>
+ 		</where>
+    </select>
+    
+    <select id="queryAll" resultType="com.zy.zy_filesystem.pojo.MyFile">
+       SELECT
+			myFile.id,
+			myFile.userId AS userId,
+			myFile.fileName,
+			myFile.path,
+			myFile.size,
+			myFile.date,
+			myFile.fileType
+			FROM
+			myFile
+        <where>
+ 			1=1
+ 			<if test="userId != null and userId !=''">
+  				and myFile.userId = #{userId}
+  			</if>
+  			<if test="fileType != null and fileType !=''">
+  				and myFile.fileType = #{fileType}
+  			</if>
+ 		</where>
+    </select>
+
+    <insert id="add">
+        INSERT INTO myFile(userId,fileName,path,size,date,fileType) VALUES (#{userId},#{fileName},#{path},#{size},#{date},#{fileType})
+    </insert>
+    
+    <delete id="deleteFile" parameterType="java.lang.Integer">
+        delete FROM myFile WHERE id=#{id}
+    </delete>
+    
+    <!-- 查询下拉框的值-账号 -->
+    <select id="selectConditionUserName" resultType="java.lang.String">
+        select userId from myFile group by userId
+    </select>
+    <!-- 查询下拉框的值-文件类型 -->
+    <select id="selectConditionType" resultType="java.lang.String">
+        select fileType from myFile group by fileType
+    </select>
+    <!-- 条件查询 -->
+    <select id="conditionQuery" resultType="com.zy.zy_filesystem.pojo.MyFile">
+        SELECT 
+		 id,userId,fileName,path,size,date,fileType
+ 		FROM myFile 
+ 		<where>
+ 			1=1
+ 			<if test="userId != null and userId !=''">
+  				and userId = #{userId}
+  			</if>
+  			<if test="fileType != null and fileType !=''">
+  				and fileType = #{fileType}
+  			</if>
+ 		</where>
+    </select>
+    
+</mapper>

@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title></title>
+<link rel="stylesheet" href="resources/css/layui.css" />
+<script type="text/javascript" src="resources/js/jQuery.js"></script>
+</head>
+
+<body>
+	<script type="text/javascript" src="resources/layui.js"></script>
+	<!-- 
+	<script>
+layui.use('upload', function(){
+  var upload = layui.upload;
+   
+  
+});
+</script> -->
+<table id="demo" class="layui-table" lay-filter="test" lay-skin="line"></table>
+<script type="text/html" id="toolbarDemo">
+  <div class="layui-btn-container">
+	<div th:hidden="${#lists.contains(session.action,'文件上传')? false:true}">
+	<button  type="button" class="layui-btn layui-btn-radius layui-btn-sm" id="test1" ><i class="layui-icon-picture"></i>上传文件</button>
+    </div>
+	<a href="/fileUpList"><button  type="button" class="layui-btn layui-btn-radius layui-btn-sm" id="f5">
+	<i class="layui-icon-picture" style="font-size: 15px"></i>刷新</button></a>
+	
+	<button class="layui-btn layui-btn-warm layui-btn-sm" lay-event="condition">查询</button>
+  </div>
+</script>
+<script type="text/html" id="barDemo">
+  <a class="layui-btn layui-btn-xs" lay-event="download">下载</a>
+  <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del" th:hidden="${#lists.contains(session.action,'文件上传')? false:true}">删除</a>
+</script>
+<script th:inline="none">
+layui.use(['table','upload','form','element'], function(){
+  var table = layui.table
+  ,upload = layui.upload
+  ,form = layui.form
+  ,element=layui.element;
+  
+  var parentIndex;//定义set界面索引，用于关闭
+  //表格实例
+  	table.render({
+     elem: '#demo'
+    ,height: 'full-50'
+    ,url: '/queryAll' //数据接口
+    ,page: true //开启分页
+    ,size: 'sm' //表格大小
+    ,toolbar: '#toolbarDemo'//开启工具栏
+    ,totalRow: true
+    ,id:'userTableReload'
+    ,response: {
+        statusName: 'status' //规定数据状态的字段名称，默认：code
+        ,statusCode: 0 //规定成功的状态码，默认：0
+        ,msgName: 'message' //规定状态信息的字段名称，默认：msg
+        ,countName: 'total' //规定数据总数的字段名称，默认：count
+        ,dataName: 'data' //规定数据列表的字段名称，默认：data
+      } 
+    ,parseData: function(res){ //res 即为原始返回的数据
+    	console.log(res);
+        return {
+          "status": res.status, //解析接口状态
+          "message": res.message, //解析提示文本
+          "total": res.total, //解析数据长度
+          "data": res.data //解析数据列表
+        };
+      }
+    ,cols: [[ //表头
+    	{type:'numbers',title:'序号'}
+      ,{field: 'userId', title: '用户账号', width:100, sort: true}
+      ,{field: 'fileName', title: '文件名', width:210}
+      ,{field: 'fileType', title: '类型', width:70}
+      ,{field: 'path', title: '路径', width:300}
+      ,{field: 'size', title: '大小', width:90} 
+      ,{field: 'date', title: '上传日期', width:142} 
+      ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:150}
+    ]]
+    ,page: true
+    
+  });
+  
+ /*  tableIns.reload({
+	  where: { //设定异步数据接口的额外参数，任意设
+	    aaaaaa: 'xxx'
+	    ,bbb: 'yyy'
+	    //…
+	  }
+	  ,page: {
+	    curr: 1 //重新从第 1 页开始
+	  }
+	}); */
+	/* var $ = layui.$, active = {
+		    reload: function(){
+		    	
+		      //执行重载
+		      table.reload('userTableReload', {
+		        page: {
+		          curr: 1 //重新从第 1 页开始
+		      }
+		      //根据条件查询  
+		        ,where:{
+		        	userName: $("#userNameSelect").val()
+		      		,fileType: $("#typeSelect").val()
+		        }
+		      });
+		   }
+		}; */
+	
+	  
+
+
+	//头工具栏事件
+	table.on('toolbar(test)', function(obj) {
+		var checkStatus = table.checkStatus(obj.config.id);
+		switch (obj.event) {
+		case 'condition':
+			layer.open({
+				title : '条件选择',
+				type : 1,
+				area : [ '62%', '80%' ],
+				maxmin : true,
+				shadeClose : true,//开启遮罩关闭
+				content : $('#conditionForm'),
+				shade : 0, // 不显示遮罩
+				success : function(layero, index) {//界面弹出后，给下拉框赋值.根据分类
+					parentIndex=index;
+					$.ajax({
+						url : 'querySelectValue',
+						type : 'post',
+						//contentType : 'application/json;charset=UTF=8',
+						//data : JSON.stringify(data),
+						dataType : 'json',
+						success : function(res) {
+							console.log("success....");
+							//console.log(res.selectCondition.userName);
+							var userName=res.selectCondition.userName;
+							var type=res.selectCondition.type;
+							$("#userNameSelect").find("option:gt(0)").remove();
+							for(var i=0;i<userName.length;i++){
+							    $("#userNameSelect").append("<option  value="+userName[i]+">"+userName[i]+'</option>');
+							    //console.log(userName[i]);
+							}
+							$("#typeSelect").find("option:gt(0)").remove();
+							for(var i=0;i<type.length;i++){   
+							    $("#typeSelect").append("<option value="+type[i]+">"+type[i]+'</option>');
+							}
+							//layer.msg('获取词汇成功');
+							form.render('select');//重新渲染
+						},
+						error : function(res) {
+							console.log("error....");
+							console.log(res.selectCondition);
+							layer.msg('获取词汇失败');
+						}
+					})
+				},
+				 cancel : function() {
+					//history.go(0);
+					return true //开启该代码可禁止点击该按钮关闭
+				},
+			});
+			//form.render();
+		};
+	});
+	
+//点击搜索按钮根据用户名称查询
+   $('#conditionQuerySubmit').on('click', function(){
+	  table.reload('userTableReload',{
+		  where: { //设定异步数据接口的额外参数，任意设
+		    'userName': $("#userNameSelect").val()
+		    ,'fileType':  $("#fileTypeSelect").val()
+		  }
+		  ,page: {
+		    curr: 1 //重新从第 1 页开始
+		  }
+		}); 
+	  layer.close(parentIndex);
+		layer.msg('查询成功！', {
+			icon : 1,
+			time : 1000
+		});
+		/* setTimeout(function(){
+		    //这里写时间到后执行的代码
+			history.go(0);
+		}, 1000); */
+     }); 
+	//element.init();
+//监听行工具事件
+  table.on('tool(test)', function(obj){
+    var data = obj.data;//获取当前行数据
+    if(obj.event === 'del'){  //如果点击了删除按钮
+      layer.confirm('确定删除该文件？', function(index){
+        obj.del();
+        console.log(data);
+        //这里写ajax访问后台
+        $.ajax(
+				{
+				url:'deleteFile',
+				type:'POST',
+				contentType:'application/json;charset=UTF=8',
+				data:JSON.stringify(data),
+				dataType:'json',
+				success:function(res){
+					console.log("success....");
+					console.log(res);
+					layer.msg('删除成功');
+				},
+				error:function(res){
+					console.log("error....");
+					console.log(res);
+					layer.msg('删除失败');
+				}
+			})
+        layer.close(index);
+      });
+    } else if(obj.event === 'download'){
+    	layer.confirm('确定下载该文件？', function(index){
+            console.log(data.path);
+            console.log(data.fileName);
+            console.log(data.fileType)
+            layer.msg('点击下载');
+             var form=$("<form>");    // 定义一个form表单
+        	form.attr("style","display:none");
+        	form.attr("target","_blank");
+        	form.attr("method","post");
+        	form.attr("action","/download");    // 此处填写文件下载提交路径
+        	var input1=$("<input>");
+        	input1.attr("type","hidden");
+        	input1.attr("name","path");    // 后台接收参数名
+        	input1.attr("value",data.path);
+        	var input2=$("<input>");
+        	input2.attr("type","hidden");
+        	input2.attr("name","name");    // 后台接收参数名
+        	input2.attr("value",data.fileName);
+        	var input3=$("<input>");
+        	input3.attr("type","hidden");
+        	input3.attr("name","type");    // 后台接收参数名
+        	input3.attr("value",data.fileType);
+        	$("body").append(form);    // 将表单放置在web中
+        	form.append(input1);
+        	form.append(input2);
+        	form.append(input3);
+        	form.submit();    // 表单提交
+          });
+    }
+  });
+  
+  	
+//上传文件按钮 执行实例
+  upload.render({
+    elem: '#test1' //绑定元素
+    ,url: '/upload' //上传接口
+    ,done: function(res, index, upload){
+    	console.log(res);
+    }
+  	,accept:'file'
+  	//,acceptMime: 'image/*'  //只显示图片问价
+  	,auto:'false'
+  	//,bindAction:'#i'
+  	,multiple:'true'//多文件上传
+  	,number:'5'
+	 ,before: function(obj){ //obj参数包含的信息，跟 choose回调完全一致，可参见上文。
+	    layer.load(); //上传loading
+		 setTimeout(function(){
+			    //这里写时间到后执行的代码
+				history.go(0);
+			}, 1000);
+	  }
+    ,error: function(re){
+    	console.log(re)
+    }
+  });
+});
+</script>
+</body>
+
+<form class="layui-form" action="" id="conditionForm" style="display: none;">
+ <div class="layui-form-item">
+    
+    <div class="layui-inline">
+	     <label class="layui-form-label">账号</label>
+	      <div class="layui-input-inline">
+	        <select name="userName"  lay-search="" id="userNameSelect">
+				<option value="">请选择账号</option>
+	        </select>
+	      </div>
+    </div>
+    
+    <div class="layui-inline">
+	      <label class="layui-form-label">文件类型</label>
+	      <div class="layui-input-inline">
+	        <select name="fileType"  lay-search="" id="typeSelect">
+	          <option value="">请选择文件类型</option>
+	        </select>
+	      </div>
+    </div>
+    
+     <div class="layui-inline">
+	      <label class="layui-form-label">文书名称</label>
+	      <div class="layui-input-inline">
+	        <select name="fileType"  lay-search="" id="typeSelectName">
+	          <option value="">请输入文书名称</option>
+	        </select>
+	      </div>
+    </div>
+    
+    <div class="layui-inline">
+		<div class="layui-input-block">
+			<button class="layui-btn" type="button" id="conditionQuerySubmit">搜索</button>
+			<button type="reset" class="layui-btn layui-btn-primary">重置</button>
+		</div>
+	</div>
+  </div>
+</form>
+</html>

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zy.zy_filesystem.dao.UserMapper">
+
+	 <resultMap type="com.zy.zy_filesystem.pojo.User" id="userMap">
+        <id property="id" column="id" />
+        <result property="userId" column="userId" />
+        <result property="nickName" column="nickName" />
+        <result property="age" column="age" />
+        <result property="date" column="date" />
+        <result property="password" column="password" />
+        <result property="sex" column="sex" />
+        <result property="tel" column="tel" />
+        <result property="email" column="email" />
+        <result property="roleName" column="roleName"/>
+        <association  property="role"  javaType="com.zy.zy_filesystem.pojo.Role">
+             <id property="roleId" column="roleId"/>
+            <result property="roleName" column="roleName"/>
+            
+             <collection   property="action"  ofType="com.zy.zy_filesystem.pojo.Action">
+	             <result property="actionName" column="actionName"/>
+	            <result property="actionDesc" column="actionDesc"/>    
+        	</collection >  
+        	  
+        </association>
+    </resultMap>
+    <select id="findByUsername" resultType="com.zy.zy_filesystem.pojo.User">
+    	select * from user where userId=#{userId}
+    </select>
+    
+     <select id="userList"  resultMap="userMap">
+        <!-- SELECT id,userId,nickName,age,date,password,sex,tel,email,r.roleId,r.roleName as roleName
+        from  user u left outer join role r on u.roleId=r.roleId -->
+        select id,userId,nickName,age,date,password,sex,tel,email,r.roleId,r.roleName as roleName,a.actionName,a.actionDesc
+        from  user u 
+        left outer join role r on u.roleId=r.roleId 
+        left join roleAction ra on r.roleId=ra.roleId 
+        left join action a on ra.actionId=a.actionId
+    </select> 
+    <select id="getUserRole"  resultMap="userMap">
+        <!-- SELECT id,userId,nickName,age,date,password,sex,tel,email,r.roleId,r.roleName as roleName
+        from  user u left outer join role r on u.roleId=r.roleId -->
+        select id,userId,nickName,age,date,password,sex,tel,email,r.roleId,r.roleName as roleName
+        from user u left join role r on u.roleId=r.roleId;
+    </select>
+    <select id="getRoleSelect" resultType="com.zy.zy_filesystem.pojo.Role">
+        select roleId,roleName from role group by roleName
+    </select>
+    <select id="queryUserById" resultType="com.zy.zy_filesystem.pojo.User">
+        SELECT * FROM user WHERE id=#{id} limit 1
+    </select>
+ 	<select id="queryUserByUserName" resultMap="userMap">
+         select id,userId,nickName,age,date,password,sex,tel,email,r.roleId,r.roleName as roleName,a.actionName,a.actionDesc
+        from user u left join role r on u.roleId=r.roleId
+        left join roleaction ra on r.roleId=ra.roleId
+        left join action a on a.actionId=ra.actionId
+         WHERE userId=#{userId}
+    </select>
+    
+    <select id="count" resultType="java.lang.Integer">
+        SELECT count(*) FROM user
+    </select>
+    <select id="queryUserAll" resultType="com.zy.zy_filesystem.pojo.User">
+        SELECT id,userId,nickName,age,date,password,sex,tel,email FROM user
+    </select>
+    <update id="updateUser" parameterType="com.zy.zy_filesystem.pojo.User">
+    	update user set userId=#{userId},nickName=#{nickName},age=#{age},date=#{date},sex=#{sex},tel=#{tel},email=#{email} where id=#{id}
+    </update>
+    <delete id="delUser" parameterType="java.lang.Integer">
+    	delete from user where id=#{id}
+    </delete>
+    
+    <delete id="delUserAll" parameterType="java.util.List">
+    	delete from user where id in
+    	<foreach collection="list" item="item" open="(" separator="," close=")">
+    		#{item.id}
+    	</foreach>
+    </delete>
+    <insert id="addUser" parameterType="com.zy.zy_filesystem.pojo.User">
+    	insert into user(userId,password,nickName,age,date,sex,tel,email) values(#{userId},#{password},#{nickName},#{age},#{date},#{sex},#{tel},#{email})
+    </insert>
+    
+    <update id="updateRole" parameterType="java.lang.String" >
+    	update user as a set a.roleId=(select b.roleId as roleId from role as b where b.roleName = #{roleName}) where a.userId=#{userId}
+    </update>
+    
+    
+    <select id="getActionById"  resultType="java.lang.String">
+        <!-- SELECT id,userId,nickName,age,date,password,sex,tel,email,r.roleId,r.roleName as roleName
+        from  user u left outer join role r on u.roleId=r.roleId -->
+        select a.actionName
+        from  user u 
+        left outer join role r on u.roleId=r.roleId 
+        left join roleAction ra on r.roleId=ra.roleId 
+        left join action a on ra.actionId=a.actionId
+        WHERE
+        userId = #{userId}
+    </select> 
+</mapper>

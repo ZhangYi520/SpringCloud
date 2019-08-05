@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zy.zy_filesystem.dao.WritMapper">
+
+<sql id="Base_Column_List">
+    id,userId,title,content,ct,mt
+  </sql>
+  
+  <select id="getWritList" resultType="com.zy.zy_filesystem.pojo.Writ">
+  	select id,
+  	userId,
+  	title,
+  	content,
+  	ct,
+  	mt
+  	from writ 
+  </select>
+  
+  <insert id="saveWrit" parameterType="com.zy.zy_filesystem.pojo.Writ">
+  	insert into writ(title,content,ct,mt,userId) values(#{title},#{content},now(),now(),#{userId});
+  </insert>
+    
+    <delete id="deleteWrit">
+    	DELETE FROM writ WHERE id=#{id} 
+    </delete>
+</mapper>

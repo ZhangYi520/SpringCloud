@@ -1,0 +1,556 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>基于java的文书管理系统</title>
+
+<link href="resources/plugins/fullPage/jquery.fullPage.css"
+	rel="stylesheet" />
+<link href="resources/plugins/bootstrap-3.3.0/css/bootstrap.min.css"
+	rel="stylesheet" />
+<link
+	href="resources/plugins/material-design-iconic-font-2.2.0/css/material-design-iconic-font.min.css"
+	rel="stylesheet" />
+<link href="resources/plugins/waves-0.7.5/waves.min.css"
+	rel="stylesheet" />
+<link
+	href="resources/plugins/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css"
+	rel="stylesheet" />
+<link href="resources/css/admin.css" rel="stylesheet" />
+<link rel="stylesheet" href="resources/css/layui.css" />
+<script type="text/javascript" src="resources/js/jQuery.js"></script>
+<style>
+/** skins **/
+#zheng-upms-server #header {
+	background: #29A176;
+}
+
+#zheng-upms-server .content_tab {
+	background: #29A176;
+}
+
+#zheng-upms-server .s-profile>a {
+	background: url(resources/images/zheng-upms.png) left top no-repeat;
+}
+
+#zheng-cms-admin #header {
+	background: #455EC5;
+}
+
+#zheng-cms-admin .content_tab {
+	background: #455EC5;
+}
+
+#zheng-cms-admin .s-profile>a {
+	background: url(resources/images/zheng-cms.png) left top no-repeat;
+}
+
+#zheng-pay-admin #header {
+	background: #F06292;
+}
+
+#zheng-pay-admin .content_tab {
+	background: #F06292;
+}
+
+#zheng-pay-admin .s-profile>a {
+	background: url(resources/images/zheng-pay.png) left top no-repeat;
+}
+
+#zheng-ucenter-home #header {
+	background: #6539B4;
+}
+
+#zheng-ucenter-home .content_tab {
+	background: #6539B4;
+}
+
+#zheng-ucenter-home .s-profile>a {
+	background: url(resources/images/zheng-ucenter.png) left top no-repeat;
+}
+
+#zheng-oss-web #header {
+	background: #0B8DE5;
+}
+
+#zheng-oss-web .content_tab {
+	background: #0B8DE5;
+}
+
+#zheng-oss-web .s-profile>a {
+	background: url(resources/images/zheng-oss.png) left top no-repeat;
+}
+
+#test #header {
+	background: test;
+}
+
+#test .content_tab {
+	background: test;
+}
+
+#test .s-profile>a {
+	background: url(test) left top no-repeat;
+}
+
+.weather {
+	color: white;
+	/* text-align: center; */
+	/* float: left; */
+	 margin: 2px 40px; 
+}
+
+.tpwidget_title_hook {
+	color: #FFFFFF !important;
+}
+
+.tpwidget_text_hook {
+	color: #FFFFFF !important;
+}
+</style>
+</head>
+<body>
+<script type="text/javascript" src="resources/layui.js"></script>
+	<header id="header">
+		<ul id="menu">
+			<li id="guide" class="line-trigger">
+				<div class="line-wrap">
+					<div class="line top"></div>
+					<div class="line center"></div>
+					<div class="line bottom"></div>
+				</div>
+			</li>
+			<li id="logo" class="hidden-xs"><a href="main.html"> <img
+					src="resources/images/logo.png" />
+			</a> <span id="system_title">文书管理系统</span>
+			</li>
+			
+			<li id="dd"><span>
+					<div class="weather">
+						<div id="tp-weather-widget"></div>
+						<script>
+							(function(T, h, i, n, k, P, a, g, e) {
+								g = function() {
+									P = h.createElement(i);
+									a = h.getElementsByTagName(i)[0];
+									P.src = k;
+									P.charset = "utf-8";
+									P.async = 1;
+									a.parentNode.insertBefore(P, a)
+								};
+								T["ThinkPageWeatherWidgetObject"] = n;
+								T[n] || (T[n] = function() {
+									(T[n].q = T[n].q || []).push(arguments)
+								});
+								T[n].l = +new Date();
+								if (T.attachEvent) {
+									T.attachEvent("onload", g)
+								} else {
+									T.addEventListener("load", g, false)
+								}
+							}
+									(window, document, "script", "tpwidget",
+											"//widget.seniverse.com/widget/chameleon.js"))
+						</script>
+						<script>
+							tpwidget("init", {
+								"flavor" : "slim",
+								"location" : "WX4FBXXFKE4F",
+								"geolocation" : "enabled",
+								"language" : "zh-chs",
+								"unit" : "c",
+								"theme" : "chameleon",
+								"container" : "tp-weather-widget",
+								"bubble" : "disabled",
+								"alarmType" : "badge",
+								"color" : "#FFFFFF",
+								"uid" : "U9EC08A15F",
+								"hash" : "039da28f5581f4bcb5c799fb4cdfb673"
+							});
+							tpwidget("show");
+						</script>
+					</div>
+			</span></li>
+			
+			
+			<li class="pull-right">
+				<ul class="hi-menu">
+					<!-- 搜索 -->
+					<li class="dropdown"><a class="waves-effect waves-light"
+						data-toggle="dropdown" href="javascript:;"> <i
+							class="him-icon zmdi zmdi-search"></i>
+					</a>
+						<ul class="dropdown-menu dm-icon pull-right">
+							<form id="search-form" class="form-inline">
+								<div class="input-group">
+									<input id="keywords" type="text" name="keywords"
+										class="form-control" placeholder="搜索" />
+									<div class="input-group-btn">
+										<button type="submit" class="btn btn-default">
+											<span class="glyphicon glyphicon-search"></span>
+										</button>
+									</div>
+								</div>
+							</form>
+						</ul></li>
+					 <li class="dropdown">
+					<a class="waves-effect waves-light" data-toggle="dropdown" href="javascript:;">
+						<i class="him-icon zmdi zmdi-dropbox"></i>
+					</a>
+					<ul class="dropdown-menu dm-icon pull-right">
+						<li class="skin-switch">
+							请选择系统切换
+						</li>
+						<li class="divider"></li>
+						<li>
+							<a class="waves-effect switch-systems" href="javascript:;" systemid="1" systemname="zheng-upms-server" systemtitle="文书管理系统"><i class="zmdi zmdi-shield-security"></i>文书管理系统</a>
+						</li>
+						<!--
+						<li>
+							<a class="waves-effect switch-systems" href="javascript:;" systemid="2" systemname="zheng-cms-admin" systemtitle="内容管理系统"><i class="zmdi zmdi-wikipedia"></i> 内容管理系统</a>
+						</li>
+						
+						<li>
+							<a class="waves-effect switch-systems" href="javascript:;" systemid="3" systemname="zheng-pay-admin" systemtitle="支付管理系统"><i class="zmdi zmdi-paypal-alt"></i> 支付管理系统</a>
+						</li>
+						
+						<li>
+							<a class="waves-effect switch-systems" href="javascript:;" systemid="4" systemname="zheng-ucenter-home" systemtitle="用户管理系统"><i class="zmdi zmdi-account"></i> 用户管理系统</a>
+						</li>
+						
+						<li>
+							<a class="waves-effect switch-systems" href="javascript:;" systemid="5" systemname="zheng-oss-web" systemtitle="存储管理系统"><i class="zmdi zmdi-cloud"></i> 存储管理系统</a>
+						</li>
+						-->
+					</ul>
+				</li> 
+					<li class="dropdown"><a class="waves-effect waves-light"
+						data-toggle="dropdown" href="javascript:;"> <i
+							class="him-icon zmdi zmdi-more-vert"></i>
+					</a>
+						<ul class="dropdown-menu dm-icon pull-right">
+							<li class="hidden-xs"><a class="waves-effect"
+								data-ma-action="fullscreen" href="javascript:fullPage();"><i
+									class="zmdi zmdi-fullscreen"></i> 全屏模式</a></li>
+							<li><a class="waves-effect"
+								data-ma-action="clear-localstorage" href="javascript:;"><i
+									class="zmdi zmdi-delete"></i> 清除缓存</a></li>
+							<li><a class="waves-effect" href="javascript:;"><i
+									class="zmdi zmdi-face"></i> 隐私管理</a></li>
+							<li><a class="waves-effect" href="javascript:;"><i
+									class="zmdi zmdi-settings"></i> 系统设置</a></li>
+							<li><a class="waves-effect" href="javascript:;"><i
+									class="zmdi zmdi-run"></i> 退出登录</a></li>
+						</ul></li>
+				</ul>
+			</li>
+		</ul>
+	</header>
+	<section id="main">
+		<!-- 左侧导航区 -->
+		<aside id="sidebar">
+			<!-- 个人资料区 -->
+			<div class="s-profile">
+				<a class="waves-effect waves-light" href="javascript:;">
+					<div class="sp-pic">
+						<img src="resources/images/avatar.jpg" />
+					</div>
+					<div class="sp-info">
+						[[${session.loginUser.nickName}]]，您好！ <i class="zmdi zmdi-caret-down"></i>
+					</div>
+				</a>
+				<ul class="main-menu">
+					<li><a class="waves-effect" href="javascript:Tab.addTab('个人资料', '/personalData');"><i
+							class="zmdi zmdi-account"></i> 个人资料</a></li>
+					<!-- <li><a class="waves-effect" href="javascript:;"><i
+							class="zmdi zmdi-face"></i> 隐私管理</a></li>
+					<li><a class="waves-effect" href="javascript:;"><i
+							class="zmdi zmdi-settings"></i> 系统设置</a></li> -->
+					<li><a class="waves-effect" href="javascript:;"><i
+							class="zmdi zmdi-run"></i> 退出登录</a></li>
+				</ul>
+			</div>
+			<!-- /个人资料区 -->
+			<!-- 菜单区 -->
+			<ul class="main-menu">
+				<li><a class="waves-effect"
+					href="javascript:Tab.addTab('首页', 'home');"><i
+						class="zmdi zmdi-home"></i> 首页</a></li>
+					<li class="sub-menu system_menus system_1 4">
+						<a class="waves-effect" href="javascript:;"><i class="zmdi zmdi-accounts"></i>用户权限管理</a>
+					<ul>
+					<li><a class="waves-effect" href="javascript:Tab.addTab('用户管理', '/toUserManageList');">用户管理</a></li>
+					<li><a class="waves-effect" href="javascript:Tab.addTab('权限管理', '/toAuthority');">权限管理</a></li>
+					</ul>
+				</li>
+					
+				<li class="sub-menu system_menus system_1 0"><a
+					class="waves-effect" href="javascript:;"><i
+						class="zmdi zmdi-accounts-list"></i>系统文件管理</a>
+					<ul>
+						<!-- <li><a class="waves-effect" href="javascript:Tab.addTab('系统管理', 'crud.html');">文件管理</a></li> -->
+						<li><a class="waves-effect" href="javascript:Tab.addTab('文件上传', '/fileUpList');">文件管理</a></li>
+					<!--<li><a class="waves-effect" href="javascript:Tab.addTab('组织管理', '/manage/organization/index');">组织管理</a></li>-->
+					</ul>
+				</li>
+				<li class="sub-menu system_menus system_1 3">
+						<a class="waves-effect" href="javascript:;"><i class="zmdi zmdi-accounts"></i>数据监控</a>
+					<ul>
+					<li><a class="waves-effect" href="javascript:Tab.addTab('Druid数据监控', '/druid');">Druid数据监控</a></li>
+					<li><a class="waves-effect" href="javascript:Tab.addTab('日志管理', '/toLogList');">日志管理</a></li>
+					</ul>
+				</li>
+				
+			<!--<li class="sub-menu system_menus system_1 6">
+			<a class="waves-effect" href="javascript:;"><i class="zmdi zmdi-lock-outline"></i> 权限资源管理</a>
+			<ul>
+				<li><a class="waves-effect" href="javascript:Tab.addTab('权限管理', '/manage/permission/index');">权限管理</a></li>
+			</ul>
+			</li>
+			<li class="sub-menu system_menus system_1 7">
+			<a class="waves-effect" href="javascript:;"><i class="zmdi zmdi-more"></i> 其他数据管理</a>
+			<ul>
+				<li><a class="waves-effect" href="javascript:Tab.addTab('公共码表', '/manage/coder/index');">公共码表</a></li>
+				<li><a class="waves-effect" href="javascript:Tab.addTab('会话管理', '/manage/session/index');">会话管理</a></li>
+				<li><a class="waves-effect" href="javascript:Tab.addTab('日志记录', '/manage/log/index');">日志记录</a></li>
+				<li><a class="waves-effect" href="javascript:Tab.addTab('键值设置', '/manage/map/index');">键值设置</a></li>
+			</ul>
+			</li>
+			<li class="sub-menu system_menus system_2 12" style="display:none;">
+			<a class="waves-effect" href="javascript:;"><i class="zmdi zmdi-menu"></i> 标签类目管理</a>
+			<ul>
+				<li><a class="waves-effect" href="javascript:Tab.addTab('标签管理', '/manage/tag/index');">标签管理</a></li>
+				<li><a class="waves-effect" href="javascript:Tab.addTab('类目管理', '/manage/category/index');">类目管理</a></li>
+			</ul>
+			</li>
+			<li class="sub-menu system_menus system_2 15" style="display:none;">
+			<a class="waves-effect" href="javascript:;"><i class="zmdi zmdi-collection-text"></i> 文章内容管理</a>
+			<ul>
+				<li><a class="waves-effect" href="javascript:Tab.addTab('文章管理', '/manage/article/index');">文章管理</a></li>
+				<li><a class="waves-effect" href="javascript:Tab.addTab('回收管理', '/manage/article/recycle');">回收管理</a></li>
+			</ul>
+			</li>
+			<li>-->
+					<div class="upms-version">&copy; ZHANG-YI</div>
+				</li>
+			</ul>
+			<!-- /菜单区 -->
+		</aside>
+		<!-- /左侧导航区 -->
+		<section id="content">
+			<div class="content_tab">
+				<div class="tab_left">
+					<a class="waves-effect waves-light" href="javascript:;"><i
+						class="zmdi zmdi-chevron-left"></i></a>
+				</div>
+				<div class="tab_right">
+					<a class="waves-effect waves-light" href="javascript:;"><i
+						class="zmdi zmdi-chevron-right"></i></a>
+				</div>
+				<ul id="tabs" class="tabs">
+					<li id="tab_home" data-index="home" data-closeable="false"
+						class="cur"><span class="waves-effect waves-light">首页</span>
+					</li>
+				</ul>
+			</div>
+			<div class="content_main">
+				<div id="iframe_home" class="iframe cur">
+					
+					<blockquote class="layui-elem-quote layui-bg-green">
+						<div id="nowTime">亲爱的！<span class="layui-badge">[[${session.loginUser.nickName}]]</span></div>
+					</blockquote>
+					<div class="layui-col-lg6 layui-col-md6">
+			<blockquote class="layui-elem-quote title">项目基本参数</blockquote>
+			<table class="layui-table magt0">
+				<colgroup>
+				    <col width="150">
+				    <col width="200">
+			  	</colgroup>
+				<tbody>
+					<tr>
+						<td>当前版本</td>
+						<td class="version">1.2.1, 2.0, 5.0.0 build-13124</td>
+					</tr>
+					<tr>
+						<td>开发作者</td>
+						<td class="author">Michael Scofield</td>
+					</tr>
+					<tr>
+						<td>网站首页</td>
+						<td class="homePage">http://localhost:8080/goods/index</td>
+					</tr>
+					<tr>
+						<td>服务器环境</td>
+						<td class="server">Apache-Tomcat-8.5.33</td>
+					</tr>
+					<tr>
+						<td>系统语言</td>
+						<td class="systemLanguage">中文 (zh_CN)</td>
+					</tr>
+					<tr>
+						<td>数据库版本</td>
+						<td class="dataBase">MySQL Server 5.6</td>
+					</tr>
+					<tr>
+						<td>最大上传限制</td>
+						<td class="maxUpload">3M</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		
+		<!-- 系统基本参数 -->
+		<div class="layui-col-lg6 layui-col-md6">
+			<blockquote class="layui-elem-quote title">系统基本参数</blockquote>
+			<table class="layui-table magt0">
+				<colgroup>
+				    <col width="150">
+				    <col width="200">
+			  	</colgroup>
+				<tbody>
+					<tr>
+						<td>传输协议</td>
+						<td class="protocol">1</td>
+					</tr>
+					<tr>
+						<td>请求方式</td>
+						<td class="requestMethod">1</td>
+					</tr>
+					<tr>
+						<td>请求路径</td>
+						<td class="requestUrl">1</td>
+					</tr>
+					<tr>
+						<td>客户主机IP</td>
+						<td class="remoteAddr">1</td>
+					</tr>
+					<tr>
+						<td>客户主机名</td>
+						<td class="remoteHost">1</td>
+					</tr>
+					<tr>
+						<td>操作系统</td>
+						<td class="osName">1</td>
+					</tr>
+					<tr>
+						<td>浏览器类型</td>
+						<td class="channelType">1</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		
+		<!-- 登陆记录 -->
+		<div class="layui-col-lg6 layui-col-md6">
+			<blockquote class="layui-elem-quote title">登录日志</blockquote>
+			<table class="layui-table magt0" id="loginLogTable" style="margin: 0px;"></table>
+		</div>
+	
+		<!-- 项目历程 -->
+		<div class="layui-col-lg6 layui-col-md6">
+			<blockquote class="layui-elem-quote title">项目历程</blockquote>
+			<ul class="layui-timeline" style="max-height: 515px;overflow: auto;margin-top: 10px;">
+			  <li class="layui-timeline-item">
+			    <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+			    <div class="layui-timeline-content layui-text">
+			      <h3 class="layui-timeline-title">8月18日</h3>
+			      <p>
+			        layui 2.0 的一切准备工作似乎都已到位。发布之弦，一触即发。
+			        <br>不枉近百个日日夜夜与之为伴。因小而大，因弱而强。
+			        <br>无论它能走多远，抑或如何支撑？至少我曾倾注全心，无怨无悔 <i class="layui-icon"></i>
+			      </p>
+			    </div>
+			  </li>
+			  <li class="layui-timeline-item">
+			    <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+			    <div class="layui-timeline-content layui-text">
+			      <h3 class="layui-timeline-title">8月16日</h3>
+			      <p>杜甫的思想核心是儒家的仁政思想，他有“<em>致君尧舜上，再使风俗淳</em>”的宏伟抱负。个人最爱的名篇有：</p>
+			      <ul>
+			        <li>《登高》</li>
+			        <li>《茅屋为秋风所破歌》</li>
+			      </ul>
+			    </div>
+			  </li>
+			  <li class="layui-timeline-item">
+			    <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+			    <div class="layui-timeline-content layui-text">
+			      <h3 class="layui-timeline-title">8月15日</h3>
+			      <p> 中国人民抗日战争胜利72周年
+			        <br>常常在想，尽管对这个国家有这样那样的抱怨，但我们的确生在了最好的时代
+			        <br>铭记、感恩
+			        <br>所有为中华民族浴血奋战的英雄将士
+			        <br>永垂不朽
+			      </p>
+			    </div>
+			  </li>
+			  <li class="layui-timeline-item">
+			    <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+			    <div class="layui-timeline-content layui-text">
+			      <div class="layui-timeline-title">过去</div>
+			    </div>
+			  </li>
+			  <li class="layui-timeline-item">
+			    <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+			    <div class="layui-timeline-content layui-text">
+			      <h3 class="layui-timeline-title">8月18日</h3>
+			      <p>
+			        layui 2.0 的一切准备工作似乎都已到位。发布之弦，一触即发。
+			        <br>不枉近百个日日夜夜与之为伴。因小而大，因弱而强。
+			        <br>无论它能走多远，抑或如何支撑？至少我曾倾注全心，无怨无悔 <i class="layui-icon"></i>
+			      </p>
+			    </div>
+			  </li>
+			  <li class="layui-timeline-item">
+			    <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+			    <div class="layui-timeline-content layui-text">
+			      <h3 class="layui-timeline-title">8月16日</h3>
+			      <p>杜甫的思想核心是儒家的仁政思想，他有“<em>致君尧舜上，再使风俗淳</em>”的宏伟抱负。个人最爱的名篇有：</p>
+			      <ul>
+			        <li>《登高》</li>
+			        <li>《茅屋为秋风所破歌》</li>
+			      </ul>
+			    </div>
+			  </li>
+			  <li class="layui-timeline-item">
+			    <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+			    <div class="layui-timeline-content layui-text">
+			      <h3 class="layui-timeline-title">8月15日</h3>
+			      <p> 中国人民抗日战争胜利72周年
+			        <br>常常在想，尽管对这个国家有这样那样的抱怨，但我们的确生在了最好的时代
+			        <br>铭记、感恩
+			        <br>所有为中华民族浴血奋战的英雄将士
+			        <br>永垂不朽
+			      </p>
+			    </div>
+			  </li>
+			  <li class="layui-timeline-item">
+			    <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+			    <div class="layui-timeline-content layui-text">
+			      <div class="layui-timeline-title">过去</div>
+			    </div>
+			  </li>
+			</ul>
+		</div>
+		
+				</div>
+			</div>
+		</section>
+	</section>
+	<footer id="footer"></footer>
+
+	<script src="resources/plugins/jquery.1.12.4.min.js"></script>
+	<script src="resources/plugins/bootstrap-3.3.0/js/bootstrap.min.js"></script>
+	<script src="resources/plugins/waves-0.7.5/waves.min.js"></script>
+	<script
+		src="resources/plugins/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
+	<script src="resources/plugins/BootstrapMenu.min.js"></script>
+	<script src="resources/plugins/device.min.js"></script>
+	<script src="resources/plugins/fullPage/jquery.fullPage.min.js"></script>
+	<script src="resources/plugins/fullPage/jquery.jdirk.min.js"></script>
+	<script src="resources/plugins/jquery.cookie.js"></script>
+	<script src="resources/js/admin.js"></script>
+</body>
+</html>
