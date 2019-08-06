@@ -12,6 +12,13 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 @MapperScan(basePackages = { "com.zy.zy_sso" })
 @EnableScheduling
+/**
+*@Description:
+*@Param: 
+*@return: 
+*@Author: zhang yi
+*@date: 
+*/
 public class ZySsoApplication {
 
     public static void main(String[] args) {

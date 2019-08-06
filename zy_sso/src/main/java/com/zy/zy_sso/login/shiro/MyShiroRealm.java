@@ -16,7 +16,12 @@ import com.zy.zy_sso.systemManage.user.entity.AuthorEntity;
 import com.zy.zy_sso.systemManage.user.entity.RoleEntity;
 import com.zy.zy_sso.systemManage.user.entity.UserEntity;
 import com.zy.zy_sso.systemManage.user.service.serviceImpl.UserServiceImpl;
-
+/**
+ * Demo class
+ *  shiro认证授权
+ * @author zhang yi
+ * @date 2019-8-6 10:22:27
+ */
 public class MyShiroRealm extends AuthorizingRealm{
 	//用于用户查询
     @Autowired
