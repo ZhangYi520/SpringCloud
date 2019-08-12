@@ -10,9 +10,9 @@
         <module name="common" />
         <module name="config_client" />
         <module name="config_server" />
-        <module name="consumer" />
         <module name="demo" />
         <module name="eureka" />
+        <module name="rabbitmq" />
         <module name="zuul" />
         <module name="zy_filesystem" />
         <module name="zy_sso" />
@@ -26,6 +26,7 @@
       <module name="demo" target="1.8" />
       <module name="eureka" target="1.8" />
       <module name="file_system" target="1.8" />
+      <module name="rabbitmq" target="1.8" />
       <module name="sso" target="1.8" />
       <module name="zuul" target="1.8" />
       <module name="zy_filesystem" target="1.8" />

@@ -49,10 +49,10 @@ class SchedualServiceHiHystric implements Feign {
 
     @Override
     public User feignDemo(String name) {
-       User u = new User();
-       u.setName(name);
-       u.setAge(22);
-       return u;
+        User u = new User();
+        u.setName(name);
+        u.setAge(22);
+        return u;
     }
 }
 
