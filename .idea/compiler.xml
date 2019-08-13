@@ -10,6 +10,7 @@
         <module name="common" />
         <module name="config_client" />
         <module name="config_server" />
+        <module name="consumer" />
         <module name="demo" />
         <module name="eureka" />
         <module name="rabbitmq" />

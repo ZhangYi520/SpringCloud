@@ -1,9 +1,10 @@
 server:
   port: 9005
+#  port: 9006
 
 spring:
   application:
-    name: config-client6
+    name: config-client3
   cloud:
     config:
       label: master
@@ -12,6 +13,17 @@ spring:
       discovery:
         enabled: true
         service-id: config-server
+#    bus:
+#      enabled: true
+#      trace:
+#        enabled: true
+  #Rabbitmq配置
+#  rabbitmq:
+#    host: 47.102.135.231
+#    port: 5672
+#    username: admin
+#    password: admin
+#    virtual-host: my_vhost
 
 #      file-extension: yaml
 #    discovery:
@@ -23,10 +35,23 @@ spring:
 
 #注册中心指向start
 eureka:
-#  instance:
-#    instance-id: config-client
-#    appname: ${spring.application.name}
+  instance:
+    instance-id: config-client
+    appname: ${spring.application.name}
   client:
     service-url:
       defaultZone: http://pre1:8001/eureka/,http://pre2:8002/eureka/
 #注册中心指向end
+
+
+logging:
+  level:
+    org.springframework.web: TRACE
+
+#management:
+#  endpoints:
+#    web:
+#      exposure:
+#        include: "bus-refresh"
+
+
