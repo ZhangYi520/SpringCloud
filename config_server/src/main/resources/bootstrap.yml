@@ -18,23 +18,8 @@ spring:
           password: zzzyyy000
       #配置仓库的分支
       label: master
-#    bus:
-#      enabled: true
-#      trace:
-#        enabled: true
-  #Rabbitmq配置
-#  rabbitmq:
-#    host: 47.102.135.231
-#    port: 5672
-#    username: admin
-#    password: admin
-#    virtual-host: my_vhost
-#management:
-#  endpoints:
-#    web:
-#      exposure:
-#        include: bus-refresh
-#注册中心指向start
+
+#注册中心指向
 eureka:
   instance:
     instance-id: config-server
@@ -42,4 +27,3 @@ eureka:
   client:
     service-url:
       defaultZone: http://pre1:8001/eureka/,http://pre2:8002/eureka/
-#注册中心指向end

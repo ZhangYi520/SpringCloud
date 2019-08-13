@@ -18,12 +18,12 @@ spring:
 #      trace:
 #        enabled: true
   #Rabbitmq配置
-#  rabbitmq:
-#    host: 47.102.135.231
-#    port: 5672
-#    username: admin
-#    password: admin
-#    virtual-host: my_vhost
+  rabbitmq:
+    host: 47.102.135.231
+    port: 5672
+    username: admin
+    password: admin
+    virtual-host: my_vhost
 
 #      file-extension: yaml
 #    discovery:
@@ -48,10 +48,10 @@ logging:
   level:
     org.springframework.web: TRACE
 
-#management:
-#  endpoints:
-#    web:
-#      exposure:
-#        include: "bus-refresh"
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "bus-refresh"
 
 
