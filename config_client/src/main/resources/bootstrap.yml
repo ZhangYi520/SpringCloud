@@ -33,7 +33,7 @@ spring:
 #          local:
 #            service-id: spring-cloud-config
 
-#注册中心指向start
+#注册中心指向
 eureka:
   instance:
     instance-id: config-client
@@ -41,13 +41,14 @@ eureka:
   client:
     service-url:
       defaultZone: http://pre1:8001/eureka/,http://pre2:8002/eureka/
-#注册中心指向end
 
 
+#boot 2.1版本以后日志打印有bug，加上这个才能打印接口日志
 logging:
   level:
     org.springframework.web: TRACE
 
+#boot 2.1版本以后bug。激活地址：/actuator/bus-refresh；2.0版本是/bus/refresh
 management:
   endpoints:
     web:
