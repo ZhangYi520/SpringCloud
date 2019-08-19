@@ -13,7 +13,7 @@ import lombok.Data;
 public class UserEntity implements Serializable{/**
 	 * 
 	 */
-	private static final long serialVersionUID = -1145199645904399906L;
+//	private static final long serialVersionUID = -1145199645904399906L;
 	@ApiModelProperty(name = "id", value = "主键", required = false, dataType = "Integer")
 	private Integer id;//主键
 	private String userName;//用户名

@@ -37,7 +37,7 @@
                         <input type="text" class="form-control" name="searchTexts" id="searchText" placeholder="请输入消息名称或内容关键字...">
                     </div>
                   </div>
-                  <button type="button" class="btn btn-primary queryButton">查询</button>
+                  <button type="button" class="btn btn-primary queryButton" onclick="layuidemo()">查询</button>
                 </form>
 	</div>
 	
@@ -317,7 +317,36 @@
             }
         }
         setTimeout(ff,500);
-</script>
+
+        function layuidemo(){
+            layer.open(
+                {
+                    //标题
+                    title: '操作成功'
+                    //内容
+                    ,content: '测试成功1111'
+                    //上间距
+                    ,offset: '100px'
+                    //前面的图标，支持1~8
+                    ,icon: 1
+                    //自动关闭时间(毫秒)
+                    ,time: 2000
+                    // anim: 0	平滑放大。默认
+                    // anim: 1	从上掉落
+                    // anim: 2	从最底部往上滑入
+                    // anim: 3	从左滑入
+                    // anim: 4	从左翻滚
+                    // anim: 5	渐显
+                    // anim: 6	抖动
+                    ,anim: 0
+                }
+            );
+        }
+
+        layer.ready(function(){
+            layer.msg('欢迎进入界面！！！！！！！');
+        });
+    </script>
 </body>
 
 

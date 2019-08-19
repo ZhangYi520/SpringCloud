@@ -34,7 +34,7 @@ public class ToViewController {
 	    Subject subject = SecurityUtils.getSubject();
 	    String usernName = (String) subject.getPrincipal();
 	    System.out.println("退出登录的用户："+usernName);
-	    RedisTemplateUtil.redisTemplate.opsForHash().delete("login",usernName);
+	    RedisTemplateUtil.redisTemplate.opsForHash().delete("login:",usernName);
 	    subject.logout();
 	    model.put("msg","安全退出！");
 	    return "login";
@@ -44,11 +44,13 @@ public class ToViewController {
 	public String toIndex(ModelMap mmap,String userName) {
 		//进入主页时获取菜单、用户等信息
 //		userName="zy";
-		UserEntity u=(UserEntity)RedisTemplateUtil.redisTemplate.opsForHash().get("login",userName);//获取redis中保存的用户信息
+		//获取redis中保存的用户信息
+		UserEntity u=(UserEntity)RedisTemplateUtil.redisTemplate.opsForHash().get("login:",userName);
 		Result<List<Menu>> resList = menuServiceImpl.selectList(userName);
 		System.out.println(resList);
 		mmap.put("user", u);
-		mmap.put("menus", resList.getData());//从结果集中获取数据
+		//从结果集中获取数据
+		mmap.put("menus", resList.getData());
 		return "index";
 	}
 	

@@ -53,7 +53,7 @@ public class LoginController {
 	        userEntity.setToken(tokenId);
 			userEntity.setPassword(null);
 			//把用户信息保存进redis，采用hash
-			RedisTemplateUtil.redisTemplate.opsForHash().put("login",user.getUserName(),userEntity);
+			RedisTemplateUtil.redisTemplate.opsForHash().put("login:",user.getUserName(),userEntity);
 			log.info("成功写入缓存:"+userEntity.toString());
 //			subject.getSession().setAttribute("user", userEntity);
 			

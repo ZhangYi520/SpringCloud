@@ -31,9 +31,9 @@ server:
 # 日志配置
 logging:
   level:
-    com.ruoyi: debug
+    com.zy.zy_sso: debug
     org.springframework: warn
-
+    org.springframework.web: TRACE
 # 用户配置
 user:
   password:
@@ -69,6 +69,7 @@ spring:
     restart:
       # 热部署开关
       enabled: true
+
 
 # MyBatis
 #mybatis:
