@@ -12,10 +12,10 @@ import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.zy.zy_sso.base.result.Result;
-import com.zy.zy_sso.systemManage.user.entity.AuthorEntity;
-import com.zy.zy_sso.systemManage.user.entity.RoleEntity;
-import com.zy.zy_sso.systemManage.user.entity.UserEntity;
-import com.zy.zy_sso.systemManage.user.service.serviceImpl.UserServiceImpl;
+import com.zy.zy_sso.entity.AuthorEntity;
+import com.zy.zy_sso.entity.RoleEntity;
+import com.zy.zy_sso.entity.UserEntity;
+import com.zy.zy_sso.Service.impl.UserServiceImpl;
 /**
  * Demo class
  *  shiro认证授权

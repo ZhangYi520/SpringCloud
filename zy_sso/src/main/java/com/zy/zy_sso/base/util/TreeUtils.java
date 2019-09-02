@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import com.zy.zy_sso.systemManage.menu.entity.Menu;
+import com.zy.zy_sso.entity.Menu;
 
 
 /**

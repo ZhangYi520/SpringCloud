@@ -2,10 +2,22 @@
 
 <html lang="zh" xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+    <th:block th:include="include :: header('角色列表')"/>
+    <th:block th:include="include :: layout-latest-css"/>
+    <th:block th:include="include :: ztree-css"/>
 </head>
 <body>
-	<p>进入角色管理界面</p>
+<p>进入角色管理界面</p>
+<th:block th:include="include :: footer"/>
+<script th:inline="javascript">
+
+    layer.ready(function () {
+        layer.msg('欢迎进入角色管理界面！！！！！！！');
+    });
+
+</script>
 </body>
+
 </html>

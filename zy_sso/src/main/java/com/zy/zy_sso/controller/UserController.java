@@ -1,19 +1,17 @@
-package com.zy.zy_sso.systemManage.user.controller;
+package com.zy.zy_sso.controller;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.zy.zy_sso.base.result.Result;
 import com.zy.zy_sso.base.util.RedisTemplateUtil;
-import com.zy.zy_sso.systemManage.paramVo.UserPara;
-import com.zy.zy_sso.systemManage.user.entity.UserEntity;
-import com.zy.zy_sso.systemManage.user.service.serviceImpl.UserServiceImpl;
+import com.zy.zy_sso.vo.UserPara;
+import com.zy.zy_sso.entity.UserEntity;
+import com.zy.zy_sso.Service.impl.UserServiceImpl;
 
 /**
  * @author 用户管理

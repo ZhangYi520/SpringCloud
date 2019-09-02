@@ -215,10 +215,12 @@
 <script th:inline="javascript"> 
 var ctx = [[@{/}]];
 /*用户管理-重置密码*/
-function resetPwd() {
-    var url = ctx + 'system/user/profile/resetPwd';
-    $.modal.open("重置密码", url, '800', '500');
-}
+    function resetPwd() {
+        var url = ctx + 'system/user/profile/resetPwd';
+        $.modal.open("重置密码", url, '800', '500');
+    }
+
+
 </script>
 </body>
 </html>

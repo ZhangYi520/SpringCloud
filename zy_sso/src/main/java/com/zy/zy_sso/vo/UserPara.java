@@ -1,4 +1,4 @@
-package com.zy.zy_sso.systemManage.paramVo;
+package com.zy.zy_sso.vo;
 
 import java.io.Serializable;
 

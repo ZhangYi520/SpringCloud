@@ -1,4 +1,4 @@
-package com.zy.zy_sso.systemManage.menu.entity;
+package com.zy.zy_sso.entity;
 
 import java.io.Serializable;
 import java.util.ArrayList;

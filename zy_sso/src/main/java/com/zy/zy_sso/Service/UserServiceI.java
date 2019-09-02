@@ -1,10 +1,10 @@
-package com.zy.zy_sso.systemManage.user.service;
+package com.zy.zy_sso.Service;
 
 import java.util.List;
 
 import com.zy.zy_sso.base.result.Result;
-import com.zy.zy_sso.systemManage.paramVo.UserPara;
-import com.zy.zy_sso.systemManage.user.entity.UserEntity;
+import com.zy.zy_sso.vo.UserPara;
+import com.zy.zy_sso.entity.UserEntity;
 
 public interface UserServiceI {
 	

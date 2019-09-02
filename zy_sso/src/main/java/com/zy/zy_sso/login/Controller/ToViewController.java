@@ -2,8 +2,6 @@ package com.zy.zy_sso.login.Controller;
 
 import java.util.List;
 
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.shiro.SecurityUtils;
@@ -15,9 +13,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import com.zy.zy_sso.base.result.Result;
 import com.zy.zy_sso.base.util.RedisTemplateUtil;
-import com.zy.zy_sso.systemManage.menu.entity.Menu;
-import com.zy.zy_sso.systemManage.menu.service.impl.MenuServiceImpl;
-import com.zy.zy_sso.systemManage.user.entity.UserEntity;
+import com.zy.zy_sso.entity.Menu;
+import com.zy.zy_sso.Service.impl.MenuServiceImpl;
+import com.zy.zy_sso.entity.UserEntity;
 
 @Controller
 public class ToViewController {

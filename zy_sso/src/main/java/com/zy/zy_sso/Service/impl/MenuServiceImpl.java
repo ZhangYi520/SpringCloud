@@ -1,4 +1,4 @@
-package com.zy.zy_sso.systemManage.menu.service.impl;
+package com.zy.zy_sso.Service.impl;
 
 import java.util.List;
 
@@ -7,9 +7,9 @@ import org.springframework.stereotype.Service;
 
 import com.zy.zy_sso.base.result.Result;
 import com.zy.zy_sso.base.util.TreeUtils;
-import com.zy.zy_sso.systemManage.menu.entity.Menu;
-import com.zy.zy_sso.systemManage.menu.mybatis.dao.MenuMapper;
-import com.zy.zy_sso.systemManage.menu.service.MenuServiceI;
+import com.zy.zy_sso.entity.Menu;
+import com.zy.zy_sso.dao.MenuMapper;
+import com.zy.zy_sso.Service.MenuServiceI;
 
 @Service
 public class MenuServiceImpl implements MenuServiceI{

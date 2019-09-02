@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.zy.zy_sso.systemManage.menu.mybatis.dao.MenuMapper">
-  <resultMap id="BaseResultMap" type="com.zy.zy_sso.systemManage.menu.entity.Menu">
+<mapper namespace="com.zy.zy_sso.dao.MenuMapper">
+  <resultMap id="BaseResultMap" type="com.zy.zy_sso.entity.Menu">
     <id column="menu_id" jdbcType="BIGINT" property="menuId" />
     <result column="menu_name" jdbcType="VARCHAR" property="menuName" />
     <result column="parent_id" jdbcType="BIGINT" property="parentId" />
@@ -31,7 +31,7 @@
     delete from zy_sso_menu
     where menu_id = #{menuId,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="com.zy.zy_sso.systemManage.menu.entity.Menu">
+  <insert id="insert" parameterType="com.zy.zy_sso.entity.Menu">
     insert into zy_sso_menu (menu_id, menu_name, parent_id, 
       order_num, url, menu_type, 
       visible, perms, icon, 
@@ -43,7 +43,7 @@
       #{createBy,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=VARCHAR}, 
       #{updateTime,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.zy.zy_sso.systemManage.menu.entity.Menu">
+  <insert id="insertSelective" parameterType="com.zy.zy_sso.entity.Menu">
     insert into zy_sso_menu
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="menuId != null">
@@ -134,7 +134,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.zy.zy_sso.systemManage.menu.entity.Menu">
+  <update id="updateByPrimaryKeySelective" parameterType="com.zy.zy_sso.entity.Menu">
     update zy_sso_menu
     <set>
       <if test="menuName != null">
@@ -179,7 +179,7 @@
     </set>
     where menu_id = #{menuId,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.zy.zy_sso.systemManage.menu.entity.Menu">
+  <update id="updateByPrimaryKey" parameterType="com.zy.zy_sso.entity.Menu">
     update zy_sso_menu
     set menu_name = #{menuName,jdbcType=VARCHAR},
       parent_id = #{parentId,jdbcType=BIGINT},

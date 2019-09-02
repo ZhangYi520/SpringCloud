@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayDeque;
 import java.util.Deque;
-import java.util.LinkedList;
 
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
@@ -24,8 +23,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.RequestMethod;
-
-import com.zy.zy_sso.systemManage.user.entity.UserEntity;
 
 /**
  * @author Administrator 自定义过滤器，进行用户访问控制

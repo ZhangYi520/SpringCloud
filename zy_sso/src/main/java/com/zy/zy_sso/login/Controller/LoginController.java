@@ -8,10 +8,8 @@ import org.apache.shiro.subject.Subject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.zy.zy_sso.base.result.CodeMsg;
@@ -19,8 +17,8 @@ import com.zy.zy_sso.base.result.Result;
 import com.zy.zy_sso.base.util.JWTUtil;
 import com.zy.zy_sso.base.util.PasswordHelper;
 import com.zy.zy_sso.base.util.RedisTemplateUtil;
-import com.zy.zy_sso.systemManage.user.entity.UserEntity;
-import com.zy.zy_sso.systemManage.user.service.serviceImpl.UserServiceImpl;
+import com.zy.zy_sso.entity.UserEntity;
+import com.zy.zy_sso.Service.impl.UserServiceImpl;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;

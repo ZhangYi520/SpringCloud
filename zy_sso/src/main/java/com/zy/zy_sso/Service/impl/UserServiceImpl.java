@@ -1,4 +1,4 @@
-package com.zy.zy_sso.systemManage.user.service.serviceImpl;
+package com.zy.zy_sso.Service.impl;
 
 import java.util.List;
 
@@ -8,10 +8,10 @@ import org.springframework.stereotype.Service;
 import com.github.pagehelper.PageHelper;
 import com.zy.zy_sso.base.result.CodeMsg;
 import com.zy.zy_sso.base.result.Result;
-import com.zy.zy_sso.systemManage.paramVo.UserPara;
-import com.zy.zy_sso.systemManage.user.entity.UserEntity;
-import com.zy.zy_sso.systemManage.user.mybatis.dao.UserDao;
-import com.zy.zy_sso.systemManage.user.service.UserServiceI;
+import com.zy.zy_sso.vo.UserPara;
+import com.zy.zy_sso.entity.UserEntity;
+import com.zy.zy_sso.dao.UserDao;
+import com.zy.zy_sso.Service.UserServiceI;
 
 @Service
 public class UserServiceImpl implements UserServiceI {

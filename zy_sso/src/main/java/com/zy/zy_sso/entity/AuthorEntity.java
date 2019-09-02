@@ -1,4 +1,4 @@
-package com.zy.zy_sso.systemManage.user.entity;
+package com.zy.zy_sso.entity;
 
 import java.io.Serializable;
 import java.util.Date;
