@@ -15,6 +15,10 @@ ruoyi:
 server:
   # 服务器的HTTP端口，默认为80
   port: 8082
+  ssl:
+    key-store: classpath:httpsKey.p12
+    key-alias: ssohttps
+    key-store-password: 123456
   servlet:
     # 应用的访问路径
     context-path: /sso
