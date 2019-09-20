@@ -17,6 +17,7 @@
         <option value="$PROJECT_DIR$/zy_filesystem/pom.xml" />
         <option value="$PROJECT_DIR$/rabbitmq/pom.xml" />
         <option value="$PROJECT_DIR$/consumer/pom.xml" />
+        <option value="$PROJECT_DIR$/zy_chat/pom.xml" />
       </list>
     </option>
   </component>

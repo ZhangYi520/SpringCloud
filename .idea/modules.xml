@@ -12,6 +12,7 @@
       <module fileurl="file://$PROJECT_DIR$/globalconfig/globalconfig.iml" filepath="$PROJECT_DIR$/globalconfig/globalconfig.iml" />
       <module fileurl="file://$PROJECT_DIR$/rabbitmq/rabbitmq.iml" filepath="$PROJECT_DIR$/rabbitmq/rabbitmq.iml" />
       <module fileurl="file://$PROJECT_DIR$/zuul/zuul.iml" filepath="$PROJECT_DIR$/zuul/zuul.iml" />
+      <module fileurl="file://$PROJECT_DIR$/zy_chat/zy_chat.iml" filepath="$PROJECT_DIR$/zy_chat/zy_chat.iml" />
       <module fileurl="file://$PROJECT_DIR$/zy_filesystem/zy_filesystem.iml" filepath="$PROJECT_DIR$/zy_filesystem/zy_filesystem.iml" />
       <module fileurl="file://$PROJECT_DIR$/zy_sso/zy_sso.iml" filepath="$PROJECT_DIR$/zy_sso/zy_sso.iml" />
     </modules>

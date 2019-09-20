@@ -107,8 +107,6 @@ public class MyFileController {
 		String fileName=name+"."+type;//拼接文件全名
 		response.setContentType("text/html;charset=utf-8");
         response.setCharacterEncoding("utf-8");
-       /* String destinationfileName = request.getSession().getAttribute("destinationfileName").toString();
-        destinationfileName = new String(destinationfileName.getBytes("iso8859-1"), "utf-8");*/
         try {
             // 得到要下载的文件
             File file = new File(path);

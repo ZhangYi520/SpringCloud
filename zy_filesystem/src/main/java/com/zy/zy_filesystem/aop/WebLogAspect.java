@@ -52,9 +52,9 @@
 //    //在com.zy.zy_filesystem.controller包下,任意返回值(第一个*)、任意类(第二个*)、任意方法(第三个*)上插入切点
 //    @Pointcut("execution(public * com.zy.zy_filesystem.controller.*.*(..))")
 //    public void weblog() {
-// 
+//
 //    }
-// 
+//
 //    //方法的返回值注入给ret
 //    @AfterReturning(returning = "ret", pointcut = "weblog()")
 //    public void doafter(JoinPoint joinPoint,Object ret) {
@@ -63,7 +63,7 @@
 //        	Log controllerLog = getAnnotationLog(joinPoint);
 //            logger.info("后置返回通知：");                     //info ,debug ,warn ,erro四种级别，这里我们注入info级别
 //            startTime.set(System.currentTimeMillis());
-//     
+//
 //            //获取servlet请求对象---因为这不是控制器，这里不能注入HttpServletRequest，但springMVC本身提供ServletRequestAttributes可以拿到
 //            ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
 //            HttpServletRequest request = attributes.getRequest();
@@ -79,20 +79,20 @@
 //            String para=Arrays.toString(joinPoint.getArgs());// 方法本传了哪些参数
 //            String date=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());//操作时间
 //            long time=System.currentTimeMillis()-startTime.get();
-//            logger.info("登录用户昵称:" +  nickName);	
-//            logger.info("ip:" +   ip);         
-//            logger.info("端口:" + port);			
-//            logger.info("URL:" + url);       
+//            logger.info("登录用户昵称:" +  nickName);
+//            logger.info("ip:" +   ip);
+//            logger.info("端口:" + port);
+//            logger.info("URL:" + url);
 //            logger.info("提交方式:" + method);
 //            logger.info("类:" + cls);
-//            logger.info("调用方法:" + classMethod);                     // 
+//            logger.info("调用方法:" + classMethod);                     //
 //            logger.info("接收参数:" + para);     // 方法本传了哪些参数
 //            logger.info("操作时间:" + date);
 //            //logger.info("返回值:" + ret);       // 响应的内容---方法的返回值responseEntity
 //            logger.info("耗时:" + time);
-//            if(controllerLog!=null) { 
+//            if(controllerLog!=null) {
 //            	String operationName=controllerLog.operationName();//获取模块名称
-//            	 logger.info("模块:" + operationName);     
+//            	 logger.info("模块:" + operationName);
 //            	 //是否需要记录日志
 //             	 boolean isRecord=controllerLog.record();
 //             	 LogPojo logPojo=new LogPojo();
@@ -112,9 +112,9 @@
 //            		 logPojo.setSuccess(1);
 //            		 logPojoServiceImpl.insertLogPojo(logPojo);//把日志数据保存进数据库
 //            		 logger.info(isRecord+"该日志需要记录-------------------------------");
-//            		 
+//
 //            	 }else {
-//            		 logger.info(isRecord+"该日志不需要记录-------------------------------"); 
+//            		 logger.info(isRecord+"该日志不需要记录-------------------------------");
 //            	 }
 //            }
 //            logger.info("---------------------------------------------------------------------");
@@ -124,9 +124,9 @@
 //			logger.error("异常信息:{}", e.getMessage());
 //		    e.printStackTrace();
 //		}
-//       
+//
 //    }
-//    
+//
 //    /**
 //     * 是否存在注解，如果存在就获取
 //     */

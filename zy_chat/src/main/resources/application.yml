@@ -1,0 +1,36 @@
+server:
+  port: 8083
+  servlet:
+    context-path: /chat
+
+
+spring:
+  #开启aop
+  aop:
+    auto: true
+  #mysql数据源
+  datasource:
+    url: jdbc:mysql://47.102.135.231:3306/sso?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true&useSSL=false
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      username: root
+      password: 123456
+  #reids
+  redis:
+    database: 0
+    host: 47.102.135.231
+    port: 6379
+    password: zhangyi_redis
+  #thymeleaf
+#  thymeleaf:
+#    encoding: utf-8
+#    content-type: text/html
+#    cache: false
+#    prefix: classpath:/templates/
+# 日志配置
+#logging:
+#  level:
+#    com.zy.zy_sso: debug
+#    org.springframework: warn
+#    org.springframework.web: TRACE
+

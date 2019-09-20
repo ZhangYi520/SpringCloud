@@ -125,5 +125,11 @@ class User{
                 ", age=" + age +
                 '}';
     }
+
+	public static void main(String[] args) {
+		Integer i;
+//		System.out.println(i);
+	}
+
 }
 

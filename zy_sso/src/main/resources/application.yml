@@ -33,11 +33,11 @@ server:
   max-http-header-size: 102400000
  
 # 日志配置
-logging:
-  level:
-    com.zy.zy_sso: debug
-    org.springframework: warn
-    org.springframework.web: TRACE
+#logging:
+#  level:
+#    com.zy.zy_sso: debug
+#    org.springframework: warn
+#    org.springframework.web: TRACE
 # 用户配置
 user:
   password:
