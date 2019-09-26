@@ -57,12 +57,35 @@ public class demo {
 }
 
 class 类{
-	private static String 名字;
-	private static String 性别;
 	public static void main(String [] args){
-		名字="小毅毅";
-		性别="男";
-		System.out.println(名字+性别);
+		int index;
+		boolean flag=true;
+		Scanner sc=new Scanner(System.in);
+		Integer [] arr=new Integer[sc.nextInt()];
+		for (int i = 0; i < arr.length; i++) {
+			arr[i]=sc.nextInt();
+		}
+		Set<Integer> staffsSet = new HashSet<Integer>(Arrays.asList(arr));
+		Object[] result = staffsSet.toArray();
+//		System.out.println("处理前:"+Arrays.toString(result));
+		//排序
+		Arrays.sort(result);
+//		System.out.println("处理中:"+Arrays.toString(result));
+		for (int i = 0; i <result.length -1; i++) {
+				if((Integer)result[i+1]-(Integer)result[i]!=1){
+					flag=false;
+				}
+		}
+//		for (Object o : result) {
+//			int i=(Integer)o;
+//
+//		}
+		if(flag){
+			System.out.println(result.length);
+		}
+//		else{
+//			System.out.println("0:"+Arrays.toString(result));
+//		}
 	}
 }
 
