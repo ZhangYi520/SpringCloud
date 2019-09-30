@@ -1,35 +1,41 @@
 package com.zy.zy_sso.controller;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.*;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
+import lombok.Data;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.swing.*;
 
 
 @RestController
 public class demo {
-	@GetMapping("/test")
-	@RequiresRoles("超级管理员")//shiro角色注解，拥有该角色才能访问
-	@RequiresPermissions("/select")//shiro权限注解，拥有该权限才能访问
-	public String to() {
-		return "idea";
-	}
+    @GetMapping("/test")
+    @RequiresRoles("超级管理员")//shiro角色注解，拥有该角色才能访问
+    @RequiresPermissions("/select")//shiro权限注解，拥有该权限才能访问
+    public String to() {
+        return "idea";
+    }
 
-	@GetMapping("/test2")
-	@RequiresPermissions("/delete")
-	public String to2() {
-		return "2019年4月28日11:21:48";
-	}
+    @GetMapping("/test2")
+    @RequiresPermissions("/delete")
+    public String to2() {
+        return "2019年4月28日11:21:48";
+    }
 
-	@GetMapping("/test3")
-	@RequiresRoles("超级管理员")//shiro角色注解，拥有该角色才能访问
-	@RequiresPermissions("/s")
-	public String to3() {
-		return "2019年4月28日11:21:48";
-	}
+    @GetMapping("/test3")
+    @RequiresRoles("超级管理员")//shiro角色注解，拥有该角色才能访问
+    @RequiresPermissions("/s")
+    public String to3() {
+        return "2019年4月28日11:21:48";
+    }
 //	
 //	@GetMapping("/t")
 //	public Result<List<Menu>> to4() {
@@ -56,36 +62,45 @@ public class demo {
 //	}
 }
 
-class 类{
-	public static void main(String [] args){
-		int index;
-		boolean flag=true;
-		Scanner sc=new Scanner(System.in);
-		Integer [] arr=new Integer[sc.nextInt()];
-		for (int i = 0; i < arr.length; i++) {
-			arr[i]=sc.nextInt();
-		}
-		Set<Integer> staffsSet = new HashSet<Integer>(Arrays.asList(arr));
-		Object[] result = staffsSet.toArray();
-//		System.out.println("处理前:"+Arrays.toString(result));
-		//排序
-		Arrays.sort(result);
-//		System.out.println("处理中:"+Arrays.toString(result));
-		for (int i = 0; i <result.length -1; i++) {
-				if((Integer)result[i+1]-(Integer)result[i]!=1){
-					flag=false;
-				}
-		}
-//		for (Object o : result) {
-//			int i=(Integer)o;
+class 类 {
+    public static void main(String[] args) {
+
+
+        List<Person> list = new ArrayList();
+        list.add(new Person(1, "haha"));
+        list.add(new Person(1, "rere"));
+        list.add(new Person(2, "fefe"));
+
+        Map<Integer,List<Person>> ss=list.stream()
+                .collect(Collectors.groupingBy(Person::getId));
+
+//        System.out.println(ss);
+
+//        List<Person> aa=ss.get(1);
+//        System.out.println(aa);
+
+        //方式二：
+        Map<Boolean,List<Person>> gg=list.stream()
+                .collect(Collectors.partitioningBy(p->p.getId()==1));
+
+        System.out.println(gg);
 //
-//		}
-		if(flag){
-			System.out.println(result.length);
-		}
-//		else{
-//			System.out.println("0:"+Arrays.toString(result));
-//		}
-	}
+//        List<Person> ff=gg.get(true);
+
+    }
+
 }
 
+@Data
+class Person{
+    Integer id;
+    String name;
+
+    public Person() {
+    }
+
+    public Person(Integer id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+}

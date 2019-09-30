@@ -37,10 +37,13 @@ public class LoginController {
 	public Result<Object> demo(@RequestBody UserEntity user) {
 		PasswordHelper pwd = new PasswordHelper();
 		System.out.println("加密前:"+user.toString());
-		Subject subject = SecurityUtils.getSubject();
+		//这里
+		Subject subject= SecurityUtils.getSubject();
+
 		UsernamePasswordToken token = new UsernamePasswordToken(user.getUserName(), user.getPassword());
 		try {
 			token.setRememberMe(true);
+			//这里
 			subject.login(token);
 			
 			Result<UserEntity> result = userServiceImpl.queryUserByUserName(user.getUserName());

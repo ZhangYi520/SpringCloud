@@ -12,7 +12,7 @@ import java.util.Date;
 public class JWTUtil {
 
     // 过期时间5分钟
-    private static final long EXPIRE_TIME = 5*60*1000;
+    private static final long EXPIRE_TIME = 10/*5*60*1000*/;
 
     /**
      * 校验token是否正确
@@ -60,5 +60,14 @@ public class JWTUtil {
 		        .withClaim("username", username)
 		        .withExpiresAt(date)
 		        .sign(algorithm);
+    }
+
+    public static void main(String[] args) {
+//        String zy = sign("zy", "1234");
+//        System.out.println(zy);
+        String username = getUsername("eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1Njk4MDcyNTcsInVzZXJuYW1lIjoienkifQ.FuxHYp5hYExnqZrCCA3P_3qGW_LE-k6S9DDLIYdyuXg\n");
+        System.out.println(username);
+//        boolean zy1 = verify(zy, "zy", "1234");
+//        System.out.println(zy1);
     }
 }
