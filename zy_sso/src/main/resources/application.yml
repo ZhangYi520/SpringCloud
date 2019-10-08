@@ -73,6 +73,21 @@ spring:
     restart:
       # 热部署开关
       enabled: true
+  #发送邮件
+  mail:
+    default-encoding: UTF-8
+    host: smtp.qq.com
+    username: 1073988580@qq.com
+    password: mtfqotlxsystbadb
+  #rabbitMQ
+  application:
+    name: spirng-boot-rabbitmq-sender
+  rabbitmq:
+    host: 47.102.135.231
+    port: 5672
+    username: admin
+    password: admin
+    virtual-host: my_vhost
 
 
 # MyBatis

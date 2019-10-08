@@ -2,6 +2,9 @@ package com.zy.zy_sso.controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
@@ -63,29 +66,21 @@ public class demo {
 }
 
 class 类 {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
+        String 下班时间="2019-9-30 17:30:00";
+        SimpleDateFormat 格式化=new SimpleDateFormat ("yyyy-MM-dd HH:mm:ss");
+        Date 下班时间新格式=格式化.parse(下班时间);
+        while(true){
+            Thread.sleep(1000);
+            Date 当前时间 = new Date();
+            long 相差的时间 = (下班时间新格式.getTime() - 当前时间.getTime()) / 1000;
+            long 时=相差的时间/60/60;
+            long 分=(相差的时间-时*60*60)/60;
+            long 秒=相差的时间-时*60*60-分*60;
+            //会打印出相差3秒
+            System.out.println("倒计时:"+时+"时"+分+"分"+秒+"秒。"+"离下班还差" + 相差的时间 + "秒");
+        }
 
-
-        List<Person> list = new ArrayList();
-        list.add(new Person(1, "haha"));
-        list.add(new Person(1, "rere"));
-        list.add(new Person(2, "fefe"));
-
-        Map<Integer,List<Person>> ss=list.stream()
-                .collect(Collectors.groupingBy(Person::getId));
-
-//        System.out.println(ss);
-
-//        List<Person> aa=ss.get(1);
-//        System.out.println(aa);
-
-        //方式二：
-        Map<Boolean,List<Person>> gg=list.stream()
-                .collect(Collectors.partitioningBy(p->p.getId()==1));
-
-        System.out.println(gg);
-//
-//        List<Person> ff=gg.get(true);
 
     }
 

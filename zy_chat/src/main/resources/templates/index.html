@@ -42,6 +42,7 @@
             document.getElementById("login").innerHTML = "退出";
         } else {
             ws.close();
+            document.getElementById("login").innerHTML = "登陆(连接)";
             ws = null;
         }
     }

@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>邮件模板</title>
+</head>
+<body>
+您好<p th:text="${id}"></p>，点这个
+<a href="#" th:href="@{http://www.baidu.com/register/{id}(id=${id})}">激活账号</a>
+</body>
+</html>
