@@ -1,5 +1,6 @@
 package com.zy.zy_sso.controller;
 
+import org.apache.log4j.Logger;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -8,6 +9,7 @@ import java.util.Map;
 
 @RestController
 public class RoleController {
+    private Logger logger = Logger.getLogger(this.getClass());
     @GetMapping("/demo")
     public Map<String,Integer> demo(){
         Map<String,Integer> map=new LinkedHashMap<String,Integer>();

@@ -67,7 +67,13 @@ public class demo {
 
 class 类 {
     public static void main(String[] args) throws Exception {
-        String 下班时间="2019-9-30 17:30:00";
+
+        Calendar cal = Calendar.getInstance();
+        cal.set(Calendar.HOUR_OF_DAY, 17);
+        cal.set(Calendar.MINUTE, 30);
+        cal.set(Calendar.SECOND, 0);
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String 下班时间=sdf.format(cal.getTime());
         SimpleDateFormat 格式化=new SimpleDateFormat ("yyyy-MM-dd HH:mm:ss");
         Date 下班时间新格式=格式化.parse(下班时间);
         while(true){
@@ -85,17 +91,17 @@ class 类 {
     }
 
 }
-
-@Data
-class Person{
-    Integer id;
-    String name;
-
-    public Person() {
-    }
-
-    public Person(Integer id, String name) {
-        this.id = id;
-        this.name = name;
-    }
-}
+//
+//@Data
+//class Person{
+//    Integer id;
+//    String name;
+//
+//    public Person() {
+//    }
+//
+//    public Person(Integer id, String name) {
+//        this.id = id;
+//        this.name = name;
+//    }
+//}

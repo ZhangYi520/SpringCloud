@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>小毅毅个人网站</title>
+    <link rel="shortcut icon" th:href="@{static/img/favicon.ico}" type="image/x-icon"/>
+    <link th:href="@{/layui/css/layui.css}" href="/layui/css/layui.css" rel="stylesheet"/>
+    <style type="text/css">
+        #test1{
+            margin-top: 150px;
+            position:relative;
+        }
+        #log{
+
+            position: absolute;
+            z-index: 1;
+        }
+    </style>
+</head>
+<body>
+<!--<p>登录界面</p>-->
+<div class="layui-carousel" id="test1">
+    <div id="log"></div>
+    <div carousel-item>
+        <!--<div class="page-header-image" th:style="'background-image:url('+@{/img/1.jpg} +')'"></div>-->
+        <!--<div class="page-header-image" th:style="'background-image:url('+@{/img/2.jpg} +')'"></div>-->
+        <!--<div class="page-header-image" th:style="'background-image:url('+@{/img/3.jpg} +')'"></div>-->
+        <div>
+            <img th:src="@{/img/123.png}" alt="" style="height: 100%;width: 100%;"/>
+        </div>
+        <div>
+            <img th:src="@{/img/z1.png}" alt="" style="height: 100%;width: 100%;"/>
+        </div>
+        <div>
+            <img th:src="@{/img/z2.png}" alt="" style="height: 100%;width: 100%;"/>
+        </div>
+
+    </div>
+</div>
+</body>
+<script th:src="@{/layui/layui.js}" src="/layui/layui.js"></script>
+<script>
+    layui.use('carousel', function(){
+        var carousel = layui.carousel;
+        //建造实例
+        carousel.render({
+            elem: '#test1'
+            ,width: '100%' //设置容器宽度
+            ,height:'600px'
+            ,arrow: 'hover' //切换箭头默认显示状态，可选值为：hover（悬停显示）,always（始终显示）,none（始终不显示）
+            ,anim: 'fade' //轮播切换动画方式，可选值为：default（左右切换），updown（上下切换），fade（渐隐渐显切换）
+            ,interval: 3000 //自动切换的时间间隔，单位：ms（毫秒），不能低于800
+        });
+    });
+</script>
+</html>
