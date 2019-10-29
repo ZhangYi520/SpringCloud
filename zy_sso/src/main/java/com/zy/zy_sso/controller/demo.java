@@ -2,13 +2,18 @@ package com.zy.zy_sso.controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
+import com.google.common.util.concurrent.RateLimiter;
 import lombok.Data;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.apache.shiro.authz.annotation.RequiresRoles;
@@ -39,41 +44,44 @@ public class demo {
     public String to3() {
         return "2019年4月28日11:21:48";
     }
-//	
-//	@GetMapping("/t")
-//	public Result<List<Menu>> to4() {
-//		Menu vo=new Menu();
-//		vo.setMenu_id(1L);
-//		vo.setPage(1);
-//		vo.setPageSize(5);
-//		PageHelper.startPage(vo.getPage(), vo.getPageSize());
-//		QueryWrapper
-//		List<Menu> l=menuMapper.sele
-//		System.out.println(l);
-//		return Result.success(l);
-//	}
-//	@GetMapping("/t1")
-//	public Object to5() {
-//		System.out.println(11111);
-////		Menu vo=new Menu();
-////		vo.setPage(1);
-////		vo.setPageSize(5);
-////		PageHelper.startPage(vo.getPage(), vo.getPageSize());
-////		List<Menu> selectList = menuMapper.selectList(null);
-////		System.out.println(selectList);
-//		return 1;
-//	}
+
+    public static void main(String[] args) {
+        //线程池
+        ExecutorService exec = Executors.newCachedThreadPool();
+        //速率是每秒只有5个许可
+        final RateLimiter rateLimiter = RateLimiter.create(5.0);
+        for (int i = 0; i < 50; i++) {
+            final int no = i;
+            Runnable runnable = new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        //获取许可
+                        rateLimiter.acquire();
+                        System.out.println("Accessing: " + no + ",time:"
+                                + new SimpleDateFormat("yy-MM-dd HH:mm:ss:SSS").format(new Date()));
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            };
+            //执行线程
+            exec.execute(runnable);
+        }
+        //退出线程池
+        exec.shutdown();
+    }
 }
 
 class 类 {
     public static void main(String[] args) throws Exception {
-
-        Calendar cal = Calendar.getInstance();
-        cal.set(Calendar.HOUR_OF_DAY, 17);
-        cal.set(Calendar.MINUTE, 30);
-        cal.set(Calendar.SECOND, 0);
+        Calendar 日历 = Calendar.getInstance();
+        日历.set(Calendar.HOUR_OF_DAY, 17);
+        日历.set(Calendar.MINUTE, 30);
+        日历.set(Calendar.SECOND, 0);
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String 下班时间=sdf.format(cal.getTime());
+        String 下班时间=sdf.format(日历.getTime());
         SimpleDateFormat 格式化=new SimpleDateFormat ("yyyy-MM-dd HH:mm:ss");
         Date 下班时间新格式=格式化.parse(下班时间);
         while(true){
@@ -85,9 +93,11 @@ class 类 {
             long 秒=相差的时间-时*60*60-分*60;
             //会打印出相差3秒
             System.out.println("倒计时:"+时+"时"+分+"分"+秒+"秒。"+"离下班还差" + 相差的时间 + "秒");
+            if(相差的时间 ==0){
+                break;
+            }
         }
-
-
+        Runtime.getRuntime().exec("cmd.exe/C start shutdown -s -t 00");
     }
 
 }
@@ -105,3 +115,4 @@ class 类 {
 //        this.name = name;
 //    }
 //}
+
