@@ -6,6 +6,7 @@ import java.util.Date;
 import lombok.Data;
 
 @Data
+@Com(name="aaaaaaaaa")
 public class AuthorEntity implements Serializable{/**
 	 * 
 	 */

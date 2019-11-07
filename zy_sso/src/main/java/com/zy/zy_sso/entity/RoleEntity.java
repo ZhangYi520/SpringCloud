@@ -6,6 +6,7 @@ import java.util.List;
 import lombok.Data;
 
 @Data
+@Com
 public class RoleEntity implements Serializable{/**
 	 * 
 	 */

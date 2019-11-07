@@ -11,6 +11,7 @@ import lombok.Data;
 @Data
 /**swagger提示*/
 @ApiModel
+@Com
 public class UserEntity implements Serializable{/**
 	 *
 	 */
