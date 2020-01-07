@@ -13,6 +13,7 @@ import java.util.concurrent.Executors;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
+import com.alibaba.fastjson.JSONObject;
 import com.google.common.util.concurrent.RateLimiter;
 import lombok.Data;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -46,73 +47,31 @@ public class demo {
     }
 
     public static void main(String[] args) {
-        //线程池
-        ExecutorService exec = Executors.newCachedThreadPool();
-        //速率是每秒只有5个许可
-        final RateLimiter rateLimiter = RateLimiter.create(5.0);
-        for (int i = 0; i < 50; i++) {
-            final int no = i;
-            Runnable runnable = new Runnable() {
-                @Override
-                public void run() {
-                    try {
-                        //获取许可
-                        rateLimiter.acquire();
-                        System.out.println("Accessing: " + no + ",time:"
-                                + new SimpleDateFormat("yy-MM-dd HH:mm:ss:SSS").format(new Date()));
 
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                }
-            };
-            //执行线程
-            exec.execute(runnable);
-        }
-        //退出线程池
-        exec.shutdown();
     }
+
+//    public  static String a(){
+//
+//    }
 }
 
 class 类 {
-    public static void main(String[] args) throws Exception {
-        Calendar 日历 = Calendar.getInstance();
-        日历.set(Calendar.HOUR_OF_DAY, 17);
-        日历.set(Calendar.MINUTE, 30);
-        日历.set(Calendar.SECOND, 0);
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String 下班时间=sdf.format(日历.getTime());
-        SimpleDateFormat 格式化=new SimpleDateFormat ("yyyy-MM-dd HH:mm:ss");
-        Date 下班时间新格式=格式化.parse(下班时间);
-        while(true){
-            Thread.sleep(1000);
-            Date 当前时间 = new Date();
-            long 相差的时间 = (下班时间新格式.getTime() - 当前时间.getTime()) / 1000;
-            long 时=相差的时间/60/60;
-            long 分=(相差的时间-时*60*60)/60;
-            long 秒=相差的时间-时*60*60-分*60;
-            //会打印出相差3秒
-            System.out.println("倒计时:"+时+"时"+分+"分"+秒+"秒。"+"离下班还差" + 相差的时间 + "秒");
-            if(相差的时间 ==0){
-                break;
-            }
-        }
-        Runtime.getRuntime().exec("cmd.exe/C start shutdown -s -t 00");
+    public static void main(String[] args) {
+        List<String> a = new ArrayList<String>();
+        a.add("a");
+        a.add("b");
+        change(a);
+        System.out.println(a);
+    }
+
+    static void change(List<String> a) {
+        a.add("zy");
     }
 
 }
-//
-//@Data
-//class Person{
-//    Integer id;
-//    String name;
-//
-//    public Person() {
-//    }
-//
-//    public Person(Integer id, String name) {
-//        this.id = id;
-//        this.name = name;
-//    }
-//}
+@Data
+class A{
+    Integer id;
+    String name;
+}
 

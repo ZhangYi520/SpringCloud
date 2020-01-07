@@ -68,8 +68,9 @@ public class KickoutSessionFilter extends AccessControlFilter {
 	protected boolean isAccessAllowed(ServletRequest request, ServletResponse response, Object mappedValue)
 			throws Exception {
 //		WebUtils.issueRedirect(request, response, "/login");
-		return false;
-	}
+//        return true;
+        return false;
+    }
 
 	@Override
 	protected boolean onAccessDenied(ServletRequest request, ServletResponse response) throws Exception {
@@ -123,8 +124,8 @@ public class KickoutSessionFilter extends AccessControlFilter {
 						// 设置会话的kickout属性表示踢出了
 						kickoutSession.setAttribute("kickout", true);
 					}
-					
-					
+
+
 				} catch (Exception e) {// ignore exception
 				}
 			}
@@ -152,7 +153,7 @@ public class KickoutSessionFilter extends AccessControlFilter {
 		}
 	}
 
-	/* 
+	/*
 	 * 重定向到登录页
 	 */
 	@Override
@@ -160,7 +161,7 @@ public class KickoutSessionFilter extends AccessControlFilter {
 		 logger.info("redirectToLogin");
 	     WebUtils.issueRedirect(request, response, "/login");
 	}
-	
+
 	/**
      * 对跨域提供支持
      */

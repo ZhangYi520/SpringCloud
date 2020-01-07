@@ -22,7 +22,7 @@
 	</resultMap>
 
 	<select id="queryUserByUserName" resultMap="userMap">
-		SELECT a.id,a.user_name,a.`password`,c.roleName,e.url,e.menu_name as menuName
+		SELECT a.id,a.user_name,a.`password`,c.roleName,e.url,e.menu_name
 		FROM zy_sso_user a 
 		LEFT JOIN zy_sso_user_role b on a.id=b.userId
 		LEFT JOIN zy_sso_role c on c.id=b.roleId

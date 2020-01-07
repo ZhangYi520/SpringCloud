@@ -56,4 +56,9 @@ public class ToViewController {
 	public String toMain() {
 		return "main";
 	}
+
+	@GetMapping("/system/user")
+	public String toSystemUuser() {
+		return "system/user";
+	}
 }

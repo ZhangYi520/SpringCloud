@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 public class RedisTemplateUtil {
 
 	public static RedisTemplate<String, Object> redisTemplate;
-	
+
 	@Resource
 	public void setRedisTemplate(RedisTemplate<String, Object> redisTemplate) {
 		RedisTemplateUtil.redisTemplate = redisTemplate;

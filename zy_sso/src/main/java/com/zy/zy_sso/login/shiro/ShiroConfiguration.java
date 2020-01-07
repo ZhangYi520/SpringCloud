@@ -72,7 +72,7 @@ public class ShiroConfiguration {
         filterChainDefinitionMap.put("/xxx3", "rolesOrFilter[超级管理员,管理员]");//或关系，这里是通过上面自定义过滤器实现的
       
 //        filterChainDefinitionMap.put("/static/**", "anon");
-        filterChainDefinitionMap.put("/**", "kickout,authc");
+//        filterChainDefinitionMap.put("/**", "kickout,authc");
  
         //未授权界面;
 //        shiroFilterFactoryBean.setUnauthorizedUrl("/403");
@@ -90,7 +90,7 @@ public class ShiroConfiguration {
     public HashedCredentialsMatcher hashedCredentialsMatcher(){
         HashedCredentialsMatcher hashedCredentialsMatcher = new HashedCredentialsMatcher();
         hashedCredentialsMatcher.setHashAlgorithmName("md5");//散列算法:这里使用MD5算法;
-        hashedCredentialsMatcher.setHashIterations(2);//散列的次数，比如散列两次，相当于 md5(md5(""));
+        hashedCredentialsMatcher.setHashIterations(1);//散列的次数，比如散列两次，相当于 md5(md5(""));
         return hashedCredentialsMatcher;
     }
  
