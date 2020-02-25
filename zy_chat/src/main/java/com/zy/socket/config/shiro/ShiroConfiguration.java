@@ -9,9 +9,11 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.handler.SimpleMappingExceptionResolver;
 
+import javax.servlet.Filter;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Properties;
+
 
 /**  
 *   
@@ -35,6 +37,11 @@ public class ShiroConfiguration {
         shiroFilterFactoryBean.setSecurityManager(securityManager);
         // 如果不设置默认会自动寻找Web工程根目录下的"/login.jsp"页面
         shiroFilterFactoryBean.setLoginUrl("/login");
+
+
+//        Map<String, Filter> filters = new LinkedHashMap<String, Filter>();
+//        filters.put("authc", new MyFormAuthenticationFilter());//登录成功后拦截至首页+验证码
+//        shiroFilterFactoryBean.setFilters(filters);
         // 登录成功后要跳转的链接
         shiroFilterFactoryBean.setSuccessUrl("/main");
         
@@ -46,18 +53,17 @@ public class ShiroConfiguration {
 //        filterChainDefinitionMap.put("/login", "anon");
         //<!-- 过滤链定义，从上向下顺序执行，一般将/**放在最为下边 -->:这是一个坑呢，一不小心代码就不好使了;
         //<!-- authc:所有url都必须认证通过才可以访问; anon:所有url都都可以匿名访问-->
-        filterChainDefinitionMap.put("/asserts", "anon");
-        filterChainDefinitionMap.put("/css", "anon");
-        filterChainDefinitionMap.put("/data", "anon");
-        filterChainDefinitionMap.put("/fonts", "anon");
-        filterChainDefinitionMap.put("/images", "anon");
-        filterChainDefinitionMap.put("/js", "anon");
-        filterChainDefinitionMap.put("/layui", "anon");
-        filterChainDefinitionMap.put("/lib", "anon");
-        filterChainDefinitionMap.put("/resources", "anon");
-        filterChainDefinitionMap.put("/static", "anon");
+        filterChainDefinitionMap.put("/css/**", "anon");
+        filterChainDefinitionMap.put("/fonts/**", "anon");
+        filterChainDefinitionMap.put("/images/**", "anon");
+        filterChainDefinitionMap.put("/img/**", "anon");
+        filterChainDefinitionMap.put("/js/**", "anon");
+        filterChainDefinitionMap.put("/layui/**", "anon");
+        filterChainDefinitionMap.put("/resources/**", "anon");
+        filterChainDefinitionMap.put("/static/**", "anon");
 
-//        filterChainDefinitionMap.put("/**", "authc");
+//        filterChainDefinitionMap.put("/index", "authc");
+        filterChainDefinitionMap.put("/**", "authc");
  
         //未授权界面;
         shiroFilterFactoryBean.setUnauthorizedUrl("/403");

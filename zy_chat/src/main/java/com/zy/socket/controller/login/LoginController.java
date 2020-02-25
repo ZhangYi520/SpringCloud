@@ -1,5 +1,9 @@
 package com.zy.socket.controller.login;
 
+import com.zy.socket.base.result.CodeMsg;
+import com.zy.socket.base.result.Result;
+import com.zy.socket.entity.User;
+
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.LockedAccountException;
@@ -27,9 +31,10 @@ public class LoginController {
 
     @PostMapping("/login")
     @ResponseBody
-    public Object demo() {
+    public Object demo(@RequestBody  User user) {
+        System.out.println("登录用户："+user.getUserName());
         Subject subject= SecurityUtils.getSubject();
-        UsernamePasswordToken token = new UsernamePasswordToken("zy","1234");
+        UsernamePasswordToken token = new UsernamePasswordToken(user.getUserName(),user.getPassword());
         try {
 //            token.setRememberMe(true);
             //这里
@@ -51,9 +56,9 @@ public class LoginController {
 
         }catch (Exception e) {
             e.printStackTrace();
-            return "error";
+            return Result.error(CodeMsg.BASE_SERVER_ERROR);
         }
-        return "ok";
+        return Result.success();
     }
     @GetMapping("/main")
     public String tomain(){
