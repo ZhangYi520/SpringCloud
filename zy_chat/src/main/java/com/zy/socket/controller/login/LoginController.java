@@ -1,7 +1,15 @@
 package com.zy.socket.controller.login;
 
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.AuthenticationException;
+import org.apache.shiro.authc.LockedAccountException;
+import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * @program: SpringCloud
@@ -16,6 +24,37 @@ public class LoginController {
         return "login";
     }
 
+
+    @PostMapping("/login")
+    @ResponseBody
+    public Object demo() {
+        Subject subject= SecurityUtils.getSubject();
+        UsernamePasswordToken token = new UsernamePasswordToken("zy","1234");
+        try {
+//            token.setRememberMe(true);
+            //这里
+            subject.login(token);
+
+//            Result<UserEntity> result = userServiceImpl.queryUserByUserName(user.getUserName());
+//            UserEntity userEntity=result.getData();
+////	        String tokenId = (String) subject.getSession().getId();
+//            String tokenId = JWTUtil.sign(userEntity.getUserName(), userEntity.getPassword());
+//            System.out.println("当前登录用户的sessionId:"+tokenId);
+//            userEntity.setToken(tokenId);
+//            userEntity.setPassword(null);
+//            //把用户信息保存进redis，采用hash
+//            RedisTemplateUtil.redisTemplate.opsForHash().put("login:",user.getUserName(),userEntity);
+//            log.info("成功写入缓存:"+userEntity.toString());
+////			subject.getSession().setAttribute("user", userEntity);
+
+//            return Result.success(userEntity);
+
+        }catch (Exception e) {
+            e.printStackTrace();
+            return "error";
+        }
+        return "ok";
+    }
     @GetMapping("/main")
     public String tomain(){
         return "main";

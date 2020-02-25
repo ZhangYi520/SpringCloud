@@ -18,13 +18,15 @@
     </style>
 </head>
 <body>
+<span id="logi">
+    <input type="text" class="form-control" id="userName" placeholder="用户名...">
+    <input type="password" placeholder="密码..." id="pwd" class="form-control" />
+    <input type="button" id="login" class="btn btn-primary btn-round btn-lg btn-block" value="登录">
+</span>
 <!--<p>登录界面</p>-->
 <div class="layui-carousel" id="test1">
     <div id="log"></div>
     <div carousel-item>
-        <!--<div class="page-header-image" th:style="'background-image:url('+@{/img/1.jpg} +')'"></div>-->
-        <!--<div class="page-header-image" th:style="'background-image:url('+@{/img/2.jpg} +')'"></div>-->
-        <!--<div class="page-header-image" th:style="'background-image:url('+@{/img/3.jpg} +')'"></div>-->
         <div>
             <img th:src="@{/img/123.png}" alt="" style="height: 100%;width: 100%;"/>
         </div>
@@ -34,12 +36,15 @@
         <div>
             <img th:src="@{/img/z2.png}" alt="" style="height: 100%;width: 100%;"/>
         </div>
-
     </div>
 </div>
+
+
 </body>
 <script th:src="@{/layui/layui.js}" src="/layui/layui.js"></script>
-<script>
+<script th:src="@{/js/jquery-1.11.1.min.js}" src="/js/jquery-1.11.1.min.js"></script>
+
+<script type="text/javascript" th:inline="javascript">
     layui.use('carousel', function(){
         var carousel = layui.carousel;
         //建造实例
@@ -52,5 +57,47 @@
             ,interval: 3000 //自动切换的时间间隔，单位：ms（毫秒），不能低于800
         });
     });
+
+    $('#login').click(function (){
+        var userName=$("#userName").val();
+        var pwd=$("#pwd").val()
+        //登陆
+        var JsonData = {
+            userName: userName,
+            password: pwd
+        };
+        console.log(JsonData);
+
+        // var index=layer.load(5);
+
+        $.ajax({
+            url : [[@{/login}]],
+            type : 'post',
+            contentType : 'application/json;charset=UTF=8',
+            // data : JSON.stringify(JsonData),
+            // dataType : 'json',
+            success : function(res) {
+            console.log("11111111111111111111");
+            //认证完成
+            if(res==="ok"){
+
+                console.log(res);
+                // window.location.href=[[@{/index}]]   +'?userName='+userName;
+                window.location.href=[[@{/index}]];
+
+            }
+            else{
+                    // layer.close(index);
+                    alert("账号密码错误！");
+                }
+            },
+            error : function(res) {
+                console.log("2222222222222222222");
+                console.log(res);
+                // layer.close(index);
+                // alert("error");
+            }
+        })
+    })
 </script>
 </html>
