@@ -1,4 +1,4 @@
-package com.zy.socket.util.email;
+package com.zy.socket.base.util.email;
 
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;

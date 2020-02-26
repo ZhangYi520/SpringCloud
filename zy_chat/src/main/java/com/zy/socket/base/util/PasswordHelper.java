@@ -1,4 +1,4 @@
-package com.zy.socket.util;
+package com.zy.socket.base.util;
 
 
 import com.zy.socket.entity.User;
@@ -19,14 +19,14 @@ public class PasswordHelper {
 
 	public static String encryptPassword(User e) {
 		//String salt=randomNumberGenerator.nextBytes().toHex();
-		String newPassword = new SimpleHash(algorithmName,e.getPassword(),e.getUserName(),hashIterations).toHex();
+		String newPassword = new SimpleHash(algorithmName,e.getPassword(),e.getName(),hashIterations).toHex();
 		//String newPassword = new SimpleHash(algorithmName, user.getPassword()).toHex();
 		e.setPassword(newPassword);
 		return newPassword;
 	}
 	public static void main(String[] args) {
 		User user = new User();
-		user.setUserName("zy");
+		user.setName("zy");
 		user.setPassword("1234");
 		PasswordHelper.encryptPassword(user);
 		System.out.println(user.toString());

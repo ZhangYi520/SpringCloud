@@ -32,9 +32,9 @@ public class LoginController {
     @PostMapping("/login")
     @ResponseBody
     public Object demo(@RequestBody  User user) {
-        System.out.println("登录用户："+user.getUserName());
+        System.out.println("登录用户："+user.getName());
         Subject subject= SecurityUtils.getSubject();
-        UsernamePasswordToken token = new UsernamePasswordToken(user.getUserName(),user.getPassword());
+        UsernamePasswordToken token = new UsernamePasswordToken(user.getName(),user.getPassword());
         try {
 //            token.setRememberMe(true);
             //这里

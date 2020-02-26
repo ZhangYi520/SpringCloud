@@ -1,6 +1,7 @@
 package com.zy.socket;
 
-import com.zy.socket.util.email.EmailUtil;
+
+import com.zy.socket.base.util.email.EmailUtil;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

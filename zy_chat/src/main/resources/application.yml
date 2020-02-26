@@ -10,17 +10,17 @@ spring:
     auto: true
   #mysql
   datasource:
-    url: jdbc:mysql://47.102.135.231:3306/chat?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true&useSSL=false
+    url: jdbc:mysql://47.107.233.154:3306/zy_chat?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true&useSSL=false
     driver-class-name: com.mysql.cj.jdbc.Driver
     hikari:
       username: root
-      password: zy_mysql
+      password: Root!!2019
   #reids
   redis:
     database: 0
-    host: 47.102.135.231
+    host: 47.107.233.154
     port: 6379
-    password: zhangyi_redis
+    password: redis_123456
   #thymeleaf
 #  thymeleaf:
 #    encoding: utf-8

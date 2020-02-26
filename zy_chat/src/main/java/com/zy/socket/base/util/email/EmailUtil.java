@@ -1,4 +1,4 @@
-package com.zy.socket.util.email;
+package com.zy.socket.base.util.email;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;

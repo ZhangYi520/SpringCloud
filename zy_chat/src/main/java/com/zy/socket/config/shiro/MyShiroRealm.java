@@ -63,7 +63,7 @@ public class MyShiroRealm extends AuthorizingRealm{
         String userId = (String) token.getPrincipal();
 //        User user=
         User user =new User();
-        user.setUserName("zy");
+        user.setName("zy");
         user.setPassword("84cf6dca79368f77c46fb7630507f0d9");
 //        if (user == null) {
 //            // 用户名不存在抛出异常
@@ -73,7 +73,7 @@ public class MyShiroRealm extends AuthorizingRealm{
 //            // 用户被管理员锁定抛出异常
 //            throw new LockedAccountException();
 //        }
-        ByteSource salt = ByteSource.Util.bytes(user.getUserName());
+        ByteSource salt = ByteSource.Util.bytes(user.getName());
         SimpleAuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(
         		user,
                 user.getPassword(), 
