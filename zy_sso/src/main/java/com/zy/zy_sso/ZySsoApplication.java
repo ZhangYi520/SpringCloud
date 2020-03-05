@@ -63,13 +63,13 @@ public class ZySsoApplication {
         String ip = InetAddress.getLocalHost().getHostAddress();
         String port = env.getProperty("server.port");
         String path = env.getProperty("server.servlet.context-path");
-        log.info("\n----------------------------------------------------------\n\t" +
-                "Application Jeecg-Boot is running! Access URLs:\n\t" +
-                "Local: \t\thttps://localhost:" + port + path + "/\n\t" +
-                "External: \thttps://" + ip + ":" + port + path + "/\n\t" +
-                "swagger-ui: \thttps://" + ip + ":" + port + path + "/swagger-ui.html\n\t" +
-                "Doc: \t\thttps://" + ip + ":" + port + path + "/doc.html\n" +
-                "----------------------------------------------------------");
+//        log.info("\n----------------------------------------------------------\n\t" +
+//                "Application Jeecg-Boot is running! Access URLs:\n\t" +
+//                "Local: \t\thttps://localhost:" + port + path + "/\n\t" +
+//                "External: \thttps://" + ip + ":" + port + path + "/\n\t" +
+//                "swagger-ui: \thttps://" + ip + ":" + port + path + "/swagger-ui.html\n\t" +
+//                "Doc: \t\thttps://" + ip + ":" + port + path + "/doc.html\n" +
+//                "----------------------------------------------------------");
     }
 
 }

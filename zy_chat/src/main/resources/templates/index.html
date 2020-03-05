@@ -51,12 +51,14 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					<img src="images/img1.jpg" alt=""/>
 				</div>
 				<div class="col-md-8 header-right">
-					<h2>Hello</h2>
+					<h2>欢迎来到我的博客</h2>
 					
-					<div style="display: flex;">
-						<h1>My name is 张毅11</h1>
+					<div style="display: flex;"  >
+						<h1>My name is 张毅</h1>
 						<!-- <input type="button" value=""/> -->
-						<button class="btn btn-large btn-primary disabled"><i class="glyphicon glyphicon-user"></i>个人主页</button>
+						<button class="btn btn-large btn-primary" id="toBlogs"><i class="glyphicon glyphicon-user"></i>个人主页</button>
+						<!--<button>aaa</button>-->
+						<!--<a id="toBlogs">aaaaa</a>-->
 					</div>
 					
 					<h6>java开发工程师</h6>
@@ -667,6 +669,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	</div>
 	<!--//footer-->
 	<!--smooth-scrolling-of-move-up-->
+
 	<script type="text/javascript">
 		$(document).ready(function() {
 		
@@ -680,11 +683,29 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			$().UItoTop({ easingType: 'easeOutQuart' });
 			
 		});
+
+
+
 	</script>
 	<!--//smooth-scrolling-of-move-up-->
 	<!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="js/bootstrap.js"></script>
+
+	<script src="js/bootstrap.js"></script>
 </body>
+
+<!--<script th:src="@{/js/jquery-1.11.1.min.js}" src="/js/jquery-1.11.1.min.js"></script>-->
+<script type="text/javascript" th:inline="javascript">
+	// alert(1)
+    $('#toBlogs').click(function (){
+        // alert(1)
+        // window.location.href=[[@{/blogs/toBlogsIndex}]];
+        window.location.href="html/blogs/blogsIndex.html";
+    })
+    // function toBlogs() {
+    //     console.log("aaaaa")
+    //     window.location.href=[[@{/blogs/toBlogsIndex}]];
+    // }
+</script>
 </html>

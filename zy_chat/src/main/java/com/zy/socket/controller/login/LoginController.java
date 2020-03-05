@@ -68,4 +68,10 @@ public class LoginController {
     public String index(){
         return "index";
     }
+
+    @GetMapping("/test")
+    @ResponseBody
+    public String test(){
+        return "test";
+    }
 }

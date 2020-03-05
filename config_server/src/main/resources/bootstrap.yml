@@ -15,7 +15,7 @@ spring:
           #访问git仓库的用户名
           username: ZhangYi520
           #访问git仓库的用户密码
-          password: zzzyyy000
+          password: page_one520.
       #配置仓库的分支
       label: master
 

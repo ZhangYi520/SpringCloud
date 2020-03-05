@@ -4,7 +4,7 @@ server:
 
 spring:
   application:
-    name: config-client3
+    name: config-client2
   cloud:
     config:
       label: master
@@ -19,7 +19,7 @@ spring:
 #        enabled: true
   #Rabbitmq配置
   rabbitmq:
-    host: 47.102.135.231
+    host: 47.107.233.154
     port: 5672
     username: admin
     password: admin
