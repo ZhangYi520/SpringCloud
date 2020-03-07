@@ -19,13 +19,7 @@ server:
 ##        enabled: true
 ##        service-id: config-server
 #
-#  #Rabbitmq配置
-#  rabbitmq:
-#    host: 47.107.233.154
-#    port: 5672
-#    username: admin
-#    password: admin
-#    virtual-host: my_vhost
+
 #
 ##注册中心指向start
 #eureka:
@@ -39,26 +33,27 @@ server:
 ##注册中心指向end
 #
 #
-##boot 2.1版本以后日志打印有bug，加上这个才能打印接口日志
-#logging:
-#  level:
-#    org.springframework.web: TRACE
-#
-##boot 2.1版本以后bug。激活地址：/actuator/bus-refresh；2.0版本是/bus/refresh
-#management:
-#  endpoints:
-#    web:
-#      exposure:
-#        include: "bus-refresh"
+#boot 2.1版本以后日志打印有bug，加上这个才能打印接口日志
+logging:
+  level:
+    org.springframework.web: TRACE
 
-################################数据库###############################################
+#boot 2.1版本以后bug。激活地址：/actuator/bus-refresh；2.0版本是/bus/refresh
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "bus-refresh"
+
+
 spring:
+  ################################数据库###############################################
   datasource:
     ##datasource配置
-    url: jdbc:mysql://47.107.233.154:3306/zy_sso?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true&useSSL=false
+    url: jdbc:mysql://47.107.233.154:3306/zy_blogs?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true&useSSL=false
     username: root
     password: Root!!2019
-    driver-class-name: com.mysql.jdbc.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
     filters: stat,wall,log4j
     hikari:
       connection-timeout: 60000
@@ -84,3 +79,14 @@ spring:
     useGlobalDataSourceStat: true
     validationQuery: SELECT 1 FROM DUAL
 
+  #Rabbitmq配置
+  rabbitmq:
+    host: 47.107.233.154
+    port: 5672
+    username: admin
+    password: admin
+    virtual-host: my_vhost
+
+mybatis:
+  #  config-location: classpath:mybatis/mybatis-config.xml
+  mapper-locations: classpath:mapper/*.xml
