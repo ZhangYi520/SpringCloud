@@ -1,51 +1,52 @@
+foo: 123456
 #启动2次，表示两个实例，方便测试负载均衡
 server:
   port: 9003
 #  port: 9004
-
-
-#spring:
-#  application:
-#    name: spring-cloud-common
 #
-#  #全局配置中心
-#  cloud:
-#    config:
-#      label: master
-#      profile: test
-#      #      uri: http://localhost:8010/
-#      discovery:
-#        enabled: true
-#        service-id: config-server
-
-  #Rabbitmq配置
-  rabbitmq:
-    host: 47.107.233.154
-    port: 5672
-    username: admin
-    password: admin
-    virtual-host: my_vhost
-
-#注册中心指向start
-eureka:
-  instance:
-    instance-id: spring-cloud-common
-    appname: ${spring.application.name}
-  client:
-    service-url:
-      #      defaultZone: http://admin:1234@127.0.0.1:8890/eureka/,http://admin:1234@127.0.0.1:8891/eureka/
-      defaultZone: http://pre1:8001/eureka/,http://pre2:8002/eureka/
-#注册中心指向end
-
-
-#boot 2.1版本以后日志打印有bug，加上这个才能打印接口日志
-logging:
-  level:
-    org.springframework.web: TRACE
-
-#boot 2.1版本以后bug。激活地址：/actuator/bus-refresh；2.0版本是/bus/refresh
-management:
-  endpoints:
-    web:
-      exposure:
-        include: "bus-refresh"
+#
+##spring:
+##  application:
+##    name: spring-cloud-common
+##
+##  #全局配置中心
+##  cloud:
+##    config:
+##      label: master
+##      profile: test
+##      #      uri: http://localhost:8010/
+##      discovery:
+##        enabled: true
+##        service-id: config-server
+#
+#  #Rabbitmq配置
+#  rabbitmq:
+#    host: 47.107.233.154
+#    port: 5672
+#    username: admin
+#    password: admin
+#    virtual-host: my_vhost
+#
+##注册中心指向start
+#eureka:
+#  instance:
+#    instance-id: spring-cloud-common
+#    appname: ${spring.application.name}
+#  client:
+#    service-url:
+#      #      defaultZone: http://admin:1234@127.0.0.1:8890/eureka/,http://admin:1234@127.0.0.1:8891/eureka/
+#      defaultZone: http://pre1:8001/eureka/,http://pre2:8002/eureka/
+##注册中心指向end
+#
+#
+##boot 2.1版本以后日志打印有bug，加上这个才能打印接口日志
+#logging:
+#  level:
+#    org.springframework.web: TRACE
+#
+##boot 2.1版本以后bug。激活地址：/actuator/bus-refresh；2.0版本是/bus/refresh
+#management:
+#  endpoints:
+#    web:
+#      exposure:
+#        include: "bus-refresh"
