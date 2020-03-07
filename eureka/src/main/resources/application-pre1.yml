@@ -14,6 +14,8 @@ spring:
 #        password: 1234
 #    profiles: 127.0.0.1
 eureka:
+  server:
+    enable-self-preservation: false #关闭注册中心的自我保护机制，防止已关闭的实例无法从注册中心剔除
   instance:
     hostname: pre1
     prefer-ip-address: true

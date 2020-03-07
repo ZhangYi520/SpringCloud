@@ -4,7 +4,7 @@ server:
 
 spring:
   application:
-    name: config-client2
+    name: config-client1
   cloud:
     config:
       label: master
@@ -36,7 +36,7 @@ spring:
 #注册中心指向
 eureka:
   instance:
-    instance-id: config-client
+    instance-id: config-client1
     appname: ${spring.application.name}
   client:
     service-url:
