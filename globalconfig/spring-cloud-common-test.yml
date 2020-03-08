@@ -37,6 +37,10 @@ server:
 logging:
   level:
     org.springframework.web: TRACE
+    com:
+      zy:
+        common:
+          dao: debug
 
 #boot 2.1版本以后bug。激活地址：/actuator/bus-refresh；2.0版本是/bus/refresh
 management:
@@ -86,6 +90,13 @@ spring:
     username: admin
     password: admin
     virtual-host: my_vhost
+
+  #redis
+  redis:
+    database: 0
+    host: 47.107.233.154
+    password: redis_123456
+    port: 6379
 
 mybatis:
   #  config-location: classpath:mybatis/mybatis-config.xml
