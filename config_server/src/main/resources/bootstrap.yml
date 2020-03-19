@@ -16,6 +16,12 @@ spring:
           username: ZhangYi520
           #访问git仓库的用户密码
           password: page_one520.
+          #启动时克隆远程存储库
+          clone-on-start: true
+          #跳过SSL证书验证
+          skipSslValidation: true
+          #强行拉入Git存储库
+          force-pull: true
       #配置仓库的分支
       label: master
 

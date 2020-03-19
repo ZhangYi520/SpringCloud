@@ -1,6 +1,7 @@
 package com.zy.common.controller;
 
 import com.zy.common.Service.impl.DemoServiceImpl;
+import com.zy.common.base.util.RedisUtil;
 import com.zy.common.entity.User;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,8 @@ public class DemoController {
 
     @Autowired
     private DemoServiceImpl demoServiceImpl;
+    @Autowired
+    RedisUtil redisUtil;
 
     @Value("${server.port}")
     String port;
@@ -27,22 +30,24 @@ public class DemoController {
     @Value("${foo}")
     String foo;
 
-    @GetMapping("/demo")
-    public User1 demo(@RequestParam(value = "name", defaultValue = "小毅毅") String name) {
-        User1 u = new User1();
-        u.setName(name);
-        u.setAge(Integer.valueOf(port));
-        return u;
-    }
+//    @GetMapping("/demo")
+//    public User1 demo(@RequestParam(value = "name", defaultValue = "小毅毅") String name) {
+//        User1 u = new User1();
+//        u.setName(name);
+//        u.setAge(Integer.valueOf(port));
+//        return u;
+//    }
 
     @GetMapping("/hi")
     public User hi1(@RequestParam("uuid") String uuid) {
+        System.out.println(redisUtil);
+        System.out.println(demoServiceImpl);
         return demoServiceImpl.getUser(uuid);
     }
 }
 
-@Data
-class User1 implements Serializable {
-    private String name;
-    private Integer age;
-}
+//@Data
+//class User1 implements Serializable {
+//    private String name;
+//    private Integer age;
+//}

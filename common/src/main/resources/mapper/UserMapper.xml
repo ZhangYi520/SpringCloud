@@ -150,4 +150,6 @@
       update_by = #{updateBy,jdbcType=VARCHAR}
     where uuid = #{uuid,jdbcType=VARCHAR}
   </update>
+
+
 </mapper>

@@ -25,6 +25,13 @@ spring:
 #    username: admin
 #    password: admin
 #    virtual-host: my_vhost
+#  #redis
+#  redis:
+#    database: 0
+#    host: 47.107.233.154
+#    password: redis_123456
+#    port: 6379
+
 
 #注册中心指向start
 eureka:
@@ -50,3 +57,8 @@ eureka:
 #      exposure:
 #        include: "bus-refresh"
 
+mybatis:
+  #  config-location: classpath:mybatis/mybatis-config.xml
+  mapper-locations: classpath:mapper/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
