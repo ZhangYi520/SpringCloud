@@ -1,0 +1,13 @@
+server:
+  port: 5670
+
+#spring.application.narne=rabbitrmq-hello
+spring:
+  #Rabbitmq\u914D\u7F6E
+  rabbitmq:
+    host: 47.107.233.154
+    port: 5672
+    username: admin
+    password: admin
+    virtual-host: my_vhost
+

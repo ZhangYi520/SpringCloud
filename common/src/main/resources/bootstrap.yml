@@ -18,19 +18,51 @@ spring:
         enabled: true
         service-id: config-server
 
-#  #Rabbitmq配置
-#  rabbitmq:
-#    host: 47.107.233.154
-#    port: 5672
-#    username: admin
-#    password: admin
-#    virtual-host: my_vhost
-#  #redis
-#  redis:
-#    database: 0
-#    host: 47.107.233.154
-#    password: redis_123456
-#    port: 6379
+  datasource:
+    ##datasource配置
+    url: jdbc:mysql://47.107.233.154:3306/zy_blogs?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true&useSSL=false
+    username: root
+    password: Root!!2019
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    filters: stat,wall,log4j
+    hikari:
+      connection-timeout: 60000
+      idle-timeout: 60000
+      max-lifetime: 600000
+      maximum-pool-size: 10
+      read-only: true
+      validation-timeout: 3000
+    initialSize: 5
+    initialization-mode: always
+    maxActive: 20
+    maxPoolPreparedStatementPerConnectionSize: 20
+    maxWait: 60000
+    minEvictableIdleTimeMillis: 300000
+    minIdle: 5
+    poolPreparedStatements: true
+    testOnBorrow: false
+    testOnReturn: false
+    testWhileIdle: true
+    timeBetweenEvictionRunsMillis: 60000
+    tomcat:
+      connection-properties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
+    useGlobalDataSourceStat: true
+    validationQuery: SELECT 1 FROM DUAL
+
+    #Rabbitmq配置
+    rabbitmq:
+      host: 47.107.233.154
+      port: 5672
+      username: admin
+      password: admin
+      virtual-host: my_vhost
+
+    #redis
+    redis:
+      database: 0
+      host: 47.107.233.154
+      password: redis_123456
+      port: 6379
 
 
 #注册中心指向start
