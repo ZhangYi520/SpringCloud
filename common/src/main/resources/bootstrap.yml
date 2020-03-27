@@ -1,22 +1,23 @@
-##启动2次，表示两个实例，方便测试负载均衡
-#server:
-#  port: 9003
-##  port: 9004
+foo: 123456
+#启动2次，表示两个实例，方便测试负载均衡
+server:
+  port: 9003
+#  port: 9004
 
 
 spring:
   application:
     name: spring-cloud-common
 
-  #全局配置中心
-  cloud:
-    config:
-      label: master
-      profile: test
-      #      uri: http://localhost:8010/
-      discovery:
-        enabled: true
-        service-id: config-server
+#  #全局配置中心
+#  cloud:
+#    config:
+#      label: master
+#      profile: test
+#      #      uri: http://localhost:8010/
+#      discovery:
+#        enabled: true
+#        service-id: config-server
 
   datasource:
     ##datasource配置

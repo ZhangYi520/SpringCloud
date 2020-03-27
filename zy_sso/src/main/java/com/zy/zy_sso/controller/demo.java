@@ -1,10 +1,14 @@
 package com.zy.zy_sso.controller;
 
+import org.apache.http.entity.StringEntity;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.openjdk.jol.info.ClassLayout;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.HashMap;
+import java.util.Set;
 
 @RestController
 public class demo {
@@ -42,7 +46,15 @@ class 类 {
 }
 
 class Test{
-
+//    int len=10;
+//    int duan=5;
+//    public static void main(String[] args) {
+//        HashMap<String, String> stringStringHashMap = new HashMap<>();
+//        Set<String> strings = stringStringHashMap.keySet();
+//        for (String string : strings) {
+//            String s = stringStringHashMap.get(string);
+//        }
+//    }
 }
 
 
