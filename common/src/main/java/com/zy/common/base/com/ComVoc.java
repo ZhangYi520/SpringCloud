@@ -8,6 +8,7 @@ public class ComVoc {
     //    static class name{
 //        static String name="zy";
 //    }
+
     public static String STATUS = "1";
 
     /**
@@ -15,9 +16,16 @@ public class ComVoc {
      * FLZL_VUE:vue
      * FLZL_JAVA:java
      */
-    public static String FLZL = "flzl";
-    public static String FLZL_VUE = "flzl_vue";
-    public static String FLZL_JAVA = "flzl_java";
+//    public static String FLZL = "flzl";
+    public enum  FLZL{
+//        public static String VUE = "flzl_vue";
+//        public static String JAVA = "flzl_java";
+        VUE, JAVA
+    }
+
+    public static void main(String[] args) {
+        System.out.println(FLZL.JAVA);
+    }
 
 
     /**
@@ -40,8 +48,11 @@ public class ComVoc {
      * FBXS_VIPKJ:vip可见
      */
     public static String FBXS = "fbxs";
-    public static String FBXS_FSKJ = "fbxs_fskj";
+    public static String FBXS_ = "fbxs_fskj";
     public static String FBXS_GK = "fbxs_gk";
     public static String FBXS_SM = "fbxs_sm";
     public static String FBXS_VIPKJ = "fbxs_vipkj";
+    public enum FBXS{
+        FSKJ,GK,SM,VIPKJ
+    }
 }

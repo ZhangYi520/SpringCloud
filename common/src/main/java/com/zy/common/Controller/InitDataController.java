@@ -32,7 +32,8 @@ public class InitDataController {
     @GetMapping("/flzl")
     public List<Voc> flzl() {
         try {
-            return vocServiceImpl.getSonListByVocCode(ComVoc.FLZL);
+//            return vocServiceImpl.getSonListByVocCode(ComVoc.FLZL);
+            return null;
         } catch (Exception e) {
             e.printStackTrace();
             return null;
@@ -63,9 +64,9 @@ public class InitDataController {
     public Map<String,List<Voc>> getWriteBlogsData() {
         try {
             Map<String,List<Voc>> map = new HashMap<>();
-            map.put("flzl",vocServiceImpl.getSonListByVocCode(ComVoc.FLZL));
-            map.put("wzlx",vocServiceImpl.getSonListByVocCode(ComVoc.WZLX));
-            map.put("fbxs",vocServiceImpl.getSonListByVocCode(ComVoc.FBXS));
+//            map.put("flzl",vocServiceImpl.getSonListByVocCode(ComVoc.FLZL));
+//            map.put("wzlx",vocServiceImpl.getSonListByVocCode(ComVoc.WZLX));
+//            map.put("fbxs",vocServiceImpl.getSonListByVocCode(ComVoc.FBXS));
             return map;
         } catch (Exception e) {
             e.printStackTrace();

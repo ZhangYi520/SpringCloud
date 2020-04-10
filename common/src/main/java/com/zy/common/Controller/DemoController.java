@@ -30,13 +30,6 @@ public class DemoController {
     @Value("${foo}")
     String foo;
 
-//    @GetMapping("/demo")
-//    public User1 demo(@RequestParam(value = "name", defaultValue = "小毅毅") String name) {
-//        User1 u = new User1();
-//        u.setName(name);
-//        u.setAge(Integer.valueOf(port));
-//        return u;
-//    }
 
     @GetMapping("/hi")
     public User hi1(@RequestParam("uuid") String uuid) {
@@ -44,10 +37,6 @@ public class DemoController {
         System.out.println(demoServiceImpl);
         return demoServiceImpl.getUser(uuid);
     }
+
 }
 
-//@Data
-//class User1 implements Serializable {
-//    private String name;
-//    private Integer age;
-//}
