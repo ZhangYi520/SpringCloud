@@ -1,11 +1,11 @@
 package com.zy.common.controller;
 
 import com.zy.common.Service.impl.VocServiceImpl;
-import com.zy.common.base.com.ComVoc;
+import com.zy.common.base.com.Cons;
 import com.zy.common.base.util.RedisUtil;
+import com.zy.common.base.util.ReturnResult;
 import com.zy.common.entity.Voc;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -30,7 +30,7 @@ public class InitDataController {
 
 
     @GetMapping("/flzl")
-    public List<Voc> flzl() {
+    public List<com.zy.common.entity.Voc> flzl() {
         try {
 //            return vocServiceImpl.getSonListByVocCode(ComVoc.FLZL);
             return null;
@@ -41,9 +41,9 @@ public class InitDataController {
     }
 
     @GetMapping("/wzlx")
-    public List<Voc> wzlx() {
+    public List<com.zy.common.entity.Voc> wzlx() {
         try {
-            return vocServiceImpl.getSonListByVocCode(ComVoc.WZLX);
+            return vocServiceImpl.getSonListByVocCode(Cons.WZLX);
         } catch (Exception e) {
             e.printStackTrace();
             return null;
@@ -51,9 +51,9 @@ public class InitDataController {
     }
 
     @GetMapping("/fbxs")
-    public List<Voc> fbxs() {
+    public List<com.zy.common.entity.Voc> fbxs() {
         try {
-            return vocServiceImpl.getSonListByVocCode(ComVoc.FBXS);
+            return vocServiceImpl.getSonListByVocCode(Cons.FBXS);
         } catch (Exception e) {
             e.printStackTrace();
             return null;
@@ -61,13 +61,13 @@ public class InitDataController {
     }
 
     @GetMapping("/getWriteBlogsData")
-    public Map<String,List<Voc>> getWriteBlogsData() {
+    public ReturnResult getWriteBlogsData() {
         try {
             Map<String,List<Voc>> map = new HashMap<>();
-//            map.put("flzl",vocServiceImpl.getSonListByVocCode(ComVoc.FLZL));
-//            map.put("wzlx",vocServiceImpl.getSonListByVocCode(ComVoc.WZLX));
-//            map.put("fbxs",vocServiceImpl.getSonListByVocCode(ComVoc.FBXS));
-            return map;
+            map.put("flzl",vocServiceImpl.getSonListByVocCode(Cons.FLZL));
+            map.put("wzlx",vocServiceImpl.getSonListByVocCode(Cons.WZLX));
+            map.put("fbxs",vocServiceImpl.getSonListByVocCode(Cons.FBXS));
+            return ReturnResult.ok(map);
         } catch (Exception e) {
             e.printStackTrace();
             return null;

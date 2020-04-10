@@ -51,12 +51,12 @@ spring:
     validationQuery: SELECT 1 FROM DUAL
 
     #Rabbitmq配置
-    rabbitmq:
-      host: 47.107.233.154
-      port: 5672
-      username: admin
-      password: admin
-      virtual-host: my_vhost
+#    rabbitmq:
+#      host: 47.107.233.154
+#      port: 5672
+#      username: admin
+#      password: admin
+#      virtual-host: my_vhost
 
     #redis
     redis:
@@ -95,3 +95,9 @@ mybatis:
   mapper-locations: classpath:mapper/*.xml
   configuration:
     map-underscore-to-camel-case: true
+
+
+logging:
+  level:
+    com.zy.common.dao: trace
+

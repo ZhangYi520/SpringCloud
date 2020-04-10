@@ -5,11 +5,11 @@
     <id column="uuid" property="uuid" jdbcType="VARCHAR" />
     <result column="pid" property="pid" jdbcType="VARCHAR" />
     <result column="voc_code" property="vocCode" jdbcType="VARCHAR" />
-    <result column="voc_name_lev1" property="vocNameLev1" jdbcType="VARCHAR" />
-    <result column="voc_name_lev2" property="vocNameLev2" jdbcType="VARCHAR" />
+    <result column="level" property="vocNameLev1" jdbcType="VARCHAR" />
+    <result column="name" property="vocNameLev2" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    uuid, pid, voc_code, voc_name_lev1, voc_name_lev2
+    uuid, pid, voc_code, level, name
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
@@ -23,7 +23,7 @@
   </delete>
   <insert id="insert" parameterType="com.zy.common.entity.Voc" >
     insert into voc (uuid, pid, voc_code, 
-      voc_name_lev1, voc_name_lev2)
+      level, name)
     values (#{uuid,jdbcType=VARCHAR}, #{pid,jdbcType=VARCHAR}, #{vocCode,jdbcType=VARCHAR}, 
       #{vocNameLev1,jdbcType=VARCHAR}, #{vocNameLev2,jdbcType=VARCHAR})
   </insert>
@@ -40,10 +40,10 @@
         voc_code,
       </if>
       <if test="vocNameLev1 != null" >
-        voc_name_lev1,
+        level,
       </if>
       <if test="vocNameLev2 != null" >
-        voc_name_lev2,
+        name,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -74,10 +74,10 @@
         voc_code = #{vocCode,jdbcType=VARCHAR},
       </if>
       <if test="vocNameLev1 != null" >
-        voc_name_lev1 = #{vocNameLev1,jdbcType=VARCHAR},
+        level = #{vocNameLev1,jdbcType=VARCHAR},
       </if>
       <if test="vocNameLev2 != null" >
-        voc_name_lev2 = #{vocNameLev2,jdbcType=VARCHAR},
+        name = #{vocNameLev2,jdbcType=VARCHAR},
       </if>
     </set>
     where uuid = #{uuid,jdbcType=VARCHAR}
@@ -86,8 +86,8 @@
     update voc
     set pid = #{pid,jdbcType=VARCHAR},
       voc_code = #{vocCode,jdbcType=VARCHAR},
-      voc_name_lev1 = #{vocNameLev1,jdbcType=VARCHAR},
-      voc_name_lev2 = #{vocNameLev2,jdbcType=VARCHAR}
+      level = #{vocNameLev1,jdbcType=VARCHAR},
+      name = #{vocNameLev2,jdbcType=VARCHAR}
     where uuid = #{uuid,jdbcType=VARCHAR}
   </update>
 
@@ -96,8 +96,8 @@
         uuid,
         pid,
         voc_code,
-        voc_name_lev1,
-        voc_name_lev2
+        `level`,
+        `name`
     FROM
         voc a
     WHERE
