@@ -1,7 +1,14 @@
 package com.zy.common.controller;
 
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.EncodeHintType;
+import com.google.zxing.MultiFormatWriter;
+import com.google.zxing.client.j2se.MatrixToImageWriter;
+import com.google.zxing.common.BitMatrix;
+import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
 import com.zy.common.Service.impl.DemoServiceImpl;
 import com.zy.common.base.util.RedisUtil;
+import com.zy.common.base.util.qrCode.QRCodeUtil;
 import com.zy.common.entity.User;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +19,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.Serializable;
+import java.nio.file.Path;
+import java.util.HashMap;
+import java.util.Hashtable;
 
 @RestController
 @RefreshScope
@@ -37,6 +50,17 @@ public class DemoController {
         System.out.println(demoServiceImpl);
         return demoServiceImpl.getUser(uuid);
     }
+
+
+    public static void main ( String[] args )
+    {
+            String a="123,123,123,";
+        int length = a.length();
+        System.out.println(a.substring(0,length-1));
+
+    }
+
+
 
 }
 
