@@ -1,175 +1,154 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.zy.common.dao.ArticleMapper" >
-  <resultMap id="BaseResultMap" type="com.zy.common.entity.Article" >
-    <id column="uuid" property="uuid" jdbcType="VARCHAR" />
-    <result column="article_img" property="articleImg" jdbcType="VARCHAR" />
-    <result column="title" property="title" jdbcType="VARCHAR" />
-    <result column="content" property="content" jdbcType="VARCHAR" />
-    <result column="label" property="label" jdbcType="VARCHAR" />
-    <result column="special_column" property="specialColumn" jdbcType="VARCHAR" />
-    <result column="type" property="type" jdbcType="VARCHAR" />
-    <result column="form" property="form" jdbcType="VARCHAR" />
-    <result column="status" property="status" jdbcType="CHAR" />
-    <result column="create_by" property="createBy" jdbcType="VARCHAR" />
-    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
-    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zy.common.dao.ArticleMapper">
+  <resultMap id="BaseResultMap" type="com.zy.common.entity.Article">
+    <id column="uuid" jdbcType="VARCHAR" property="uuid" />
+    <result column="article_img" jdbcType="VARCHAR" property="articleImg" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
+    <result column="voc_type" jdbcType="VARCHAR" property="vocType" />
+    <result column="voc_form" jdbcType="VARCHAR" property="vocForm" />
+    <result column="status" jdbcType="CHAR" property="status" />
+    <result column="create_by" jdbcType="VARCHAR" property="createBy" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
   </resultMap>
-  <sql id="Base_Column_List" >
-    uuid, article_img, title, content, label, special_column, type, form, status, create_by, 
-    create_time, update_time
+  <sql id="Base_Column_List">
+    uuid, article_img, title, content, voc_type, voc_form, status, create_by, create_time, 
+    update_time
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from article
     where uuid = #{uuid,jdbcType=VARCHAR}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from article
     where uuid = #{uuid,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" parameterType="com.zy.common.entity.Article" >
+  <insert id="insert" parameterType="com.zy.common.entity.Article">
     insert into article (uuid, article_img, title, 
-      content, label, special_column, 
-      type, form, status, create_by, 
-      create_time, update_time)
+      content, voc_type, voc_form, 
+      status, create_by, create_time, 
+      update_time)
     values (#{uuid,jdbcType=VARCHAR}, #{articleImg,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, 
-      #{content,jdbcType=VARCHAR}, #{label,jdbcType=VARCHAR}, #{specialColumn,jdbcType=VARCHAR}, 
-      #{type,jdbcType=VARCHAR}, #{form,jdbcType=VARCHAR}, #{status,jdbcType=CHAR}, #{createBy,jdbcType=VARCHAR}, 
-      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+      #{content,jdbcType=VARCHAR}, #{vocType,jdbcType=VARCHAR}, #{vocForm,jdbcType=VARCHAR}, 
+      #{status,jdbcType=CHAR}, #{createBy,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="com.zy.common.entity.Article" >
+  <insert id="insertSelective" parameterType="com.zy.common.entity.Article">
     insert into article
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="uuid != null" >
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="uuid != null">
         uuid,
       </if>
-      <if test="articleImg != null" >
+      <if test="articleImg != null">
         article_img,
       </if>
-      <if test="title != null" >
+      <if test="title != null">
         title,
       </if>
-      <if test="content != null" >
+      <if test="content != null">
         content,
       </if>
-      <if test="label != null" >
-        label,
+      <if test="vocType != null">
+        voc_type,
       </if>
-      <if test="specialColumn != null" >
-        special_column,
+      <if test="vocForm != null">
+        voc_form,
       </if>
-      <if test="type != null" >
-        type,
-      </if>
-      <if test="form != null" >
-        form,
-      </if>
-      <if test="status != null" >
+      <if test="status != null">
         status,
       </if>
-      <if test="createBy != null" >
+      <if test="createBy != null">
         create_by,
       </if>
-      <if test="createTime != null" >
+      <if test="createTime != null">
         create_time,
       </if>
-      <if test="updateTime != null" >
+      <if test="updateTime != null">
         update_time,
       </if>
     </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="uuid != null" >
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="uuid != null">
         #{uuid,jdbcType=VARCHAR},
       </if>
-      <if test="articleImg != null" >
+      <if test="articleImg != null">
         #{articleImg,jdbcType=VARCHAR},
       </if>
-      <if test="title != null" >
+      <if test="title != null">
         #{title,jdbcType=VARCHAR},
       </if>
-      <if test="content != null" >
+      <if test="content != null">
         #{content,jdbcType=VARCHAR},
       </if>
-      <if test="label != null" >
-        #{label,jdbcType=VARCHAR},
+      <if test="vocType != null">
+        #{vocType,jdbcType=VARCHAR},
       </if>
-      <if test="specialColumn != null" >
-        #{specialColumn,jdbcType=VARCHAR},
+      <if test="vocForm != null">
+        #{vocForm,jdbcType=VARCHAR},
       </if>
-      <if test="type != null" >
-        #{type,jdbcType=VARCHAR},
-      </if>
-      <if test="form != null" >
-        #{form,jdbcType=VARCHAR},
-      </if>
-      <if test="status != null" >
+      <if test="status != null">
         #{status,jdbcType=CHAR},
       </if>
-      <if test="createBy != null" >
+      <if test="createBy != null">
         #{createBy,jdbcType=VARCHAR},
       </if>
-      <if test="createTime != null" >
+      <if test="createTime != null">
         #{createTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="updateTime != null" >
+      <if test="updateTime != null">
         #{updateTime,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.zy.common.entity.Article" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.zy.common.entity.Article">
     update article
-    <set >
-      <if test="articleImg != null" >
+    <set>
+      <if test="articleImg != null">
         article_img = #{articleImg,jdbcType=VARCHAR},
       </if>
-      <if test="title != null" >
+      <if test="title != null">
         title = #{title,jdbcType=VARCHAR},
       </if>
-      <if test="content != null" >
+      <if test="content != null">
         content = #{content,jdbcType=VARCHAR},
       </if>
-      <if test="label != null" >
-        label = #{label,jdbcType=VARCHAR},
+      <if test="vocType != null">
+        voc_type = #{vocType,jdbcType=VARCHAR},
       </if>
-      <if test="specialColumn != null" >
-        special_column = #{specialColumn,jdbcType=VARCHAR},
+      <if test="vocForm != null">
+        voc_form = #{vocForm,jdbcType=VARCHAR},
       </if>
-      <if test="type != null" >
-        type = #{type,jdbcType=VARCHAR},
-      </if>
-      <if test="form != null" >
-        form = #{form,jdbcType=VARCHAR},
-      </if>
-      <if test="status != null" >
+      <if test="status != null">
         status = #{status,jdbcType=CHAR},
       </if>
-      <if test="createBy != null" >
+      <if test="createBy != null">
         create_by = #{createBy,jdbcType=VARCHAR},
       </if>
-      <if test="createTime != null" >
+      <if test="createTime != null">
         create_time = #{createTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="updateTime != null" >
+      <if test="updateTime != null">
         update_time = #{updateTime,jdbcType=TIMESTAMP},
       </if>
     </set>
     where uuid = #{uuid,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.zy.common.entity.Article" >
+  <update id="updateByPrimaryKey" parameterType="com.zy.common.entity.Article">
     update article
     set article_img = #{articleImg,jdbcType=VARCHAR},
       title = #{title,jdbcType=VARCHAR},
       content = #{content,jdbcType=VARCHAR},
-      label = #{label,jdbcType=VARCHAR},
-      special_column = #{specialColumn,jdbcType=VARCHAR},
-      type = #{type,jdbcType=VARCHAR},
-      form = #{form,jdbcType=VARCHAR},
+      voc_type = #{vocType,jdbcType=VARCHAR},
+      voc_form = #{vocForm,jdbcType=VARCHAR},
       status = #{status,jdbcType=CHAR},
       create_by = #{createBy,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       update_time = #{updateTime,jdbcType=TIMESTAMP}
     where uuid = #{uuid,jdbcType=VARCHAR}
   </update>
+
 </mapper>
