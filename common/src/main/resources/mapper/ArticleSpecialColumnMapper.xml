@@ -68,4 +68,16 @@
       voc_id = #{vocId,jdbcType=VARCHAR}
     where uuid = #{uuid,jdbcType=VARCHAR}
   </update>
+
+  <insert id="insertAll" parameterType="java.util.List">
+     insert into article_special_column (uuid, article_id, voc_id
+      )
+    values
+    <foreach collection="list" item="item" index="index" separator=",">
+      (
+      #{item.uuid},#{item.articleId},#{item.vocId}
+      )
+    </foreach>
+
+  </insert>
 </mapper>

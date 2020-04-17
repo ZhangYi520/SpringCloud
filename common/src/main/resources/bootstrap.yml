@@ -25,30 +25,30 @@ spring:
     username: root
     password: Root!!2019
     driver-class-name: com.mysql.cj.jdbc.Driver
-    filters: stat,wall,log4j
-    hikari:
-      connection-timeout: 60000
-      idle-timeout: 60000
-      max-lifetime: 600000
-      maximum-pool-size: 10
-      read-only: true
-      validation-timeout: 3000
-    initialSize: 5
-    initialization-mode: always
-    maxActive: 20
-    maxPoolPreparedStatementPerConnectionSize: 20
-    maxWait: 60000
-    minEvictableIdleTimeMillis: 300000
-    minIdle: 5
-    poolPreparedStatements: true
-    testOnBorrow: false
-    testOnReturn: false
-    testWhileIdle: true
-    timeBetweenEvictionRunsMillis: 60000
-    tomcat:
-      connection-properties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
-    useGlobalDataSourceStat: true
-    validationQuery: SELECT 1 FROM DUAL
+#    filters: stat,wall,log4j
+#    hikari:
+#      connection-timeout: 60000
+#      idle-timeout: 60000
+#      max-lifetime: 600000
+#      maximum-pool-size: 10
+#      read-only: true
+#      validation-timeout: 3000
+#    initialSize: 5
+#    initialization-mode: always
+#    maxActive: 20
+#    maxPoolPreparedStatementPerConnectionSize: 20
+#    maxWait: 60000
+#    minEvictableIdleTimeMillis: 300000
+#    minIdle: 5
+#    poolPreparedStatements: true
+#    testOnBorrow: false
+#    testOnReturn: false
+#    testWhileIdle: true
+#    timeBetweenEvictionRunsMillis: 60000
+#    tomcat:
+#      connection-properties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
+#    useGlobalDataSourceStat: true
+#    validationQuery: SELECT 1 FROM DUAL
 
     #Rabbitmq配置
     rabbitmq:
@@ -98,19 +98,22 @@ eureka:
 #      exposure:
 #        include: "bus-refresh"
 
-#mybatis:
-#  #  config-location: classpath:mybatis/mybatis-config.xml
-#  mapper-locations: classpath:mapper/*.xml
+mybatis:
+#  config-location: classpath:mybatis/mybatis-config.xml
+  mapper-locations: classpath:mapper/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+
+#mybatis-plus:
 #  configuration:
 #    map-underscore-to-camel-case: true
-mybatis-plus:
-  global-config:
-    db-config:
-      db-type: mysql
-      id-type: auto
-      table-underline: true
-  mapper-locations: classpath:mappers/*.xml
-  type-aliases-package: com.zy.common
+#  global-config:
+#    db-config:
+#      db-type: mysql
+#      id-type: auto
+#      table-underline: true
+#  mapper-locations: classpath:mappers/*.xml
+#  type-aliases-package: com.zy.common
 
 logging:
   level:

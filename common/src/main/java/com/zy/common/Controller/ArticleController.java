@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -28,10 +29,21 @@ public class ArticleController {
     @Autowired
     private ArticleServiceImpl articleServiceImpl;
 
+//    @PostMapping("/add")
+//    public ReturnResult add(@RequestParam("vo") String vo){
+//        ArticleVo stu= JSON.parseObject(vo, ArticleVo.class);
+//        log.info(stu.toString());
+//        return articleServiceImpl.add(stu);
+//    }
+
     @PostMapping("/add")
-    public ReturnResult add(@RequestParam("vo") String vo){
-        ArticleVo stu= JSON.parseObject(vo, ArticleVo.class);
-        log.info(stu.toString());
-        return articleServiceImpl.add(stu);
+    @Transactional(readOnly = false)
+    public ReturnResult add(@RequestBody ArticleVo vo){
+//        ArticleVo stu= JSON.parseObject(vo, ArticleVo.class);
+        log.info(vo.toString());
+//        return null;
+        ReturnResult returnResult = articleServiceImpl.saveArticle(vo);
+//        ReturnResult returnResult=articleServiceImpl.demo();
+        return returnResult;
     }
 }

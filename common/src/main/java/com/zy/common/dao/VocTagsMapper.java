@@ -1,11 +1,10 @@
 package com.zy.common.dao;
 
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.zy.common.entity.VocTags;
 
 import java.util.List;
 
-public interface VocTagsMapper extends BaseMapper<VocTags> {
+public interface VocTagsMapper {
     int deleteByPrimaryKey(String uuid);
 
     int insert(VocTags record);

@@ -1,5 +1,6 @@
 package com.zy.common.dao;
 
+import com.zy.common.entity.ArticleSpecialColumn;
 import com.zy.common.entity.User;
 
 public interface UserMapper {

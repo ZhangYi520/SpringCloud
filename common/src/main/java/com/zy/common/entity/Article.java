@@ -1,7 +1,9 @@
 package com.zy.common.entity;
 
-import java.util.Date;
+import lombok.Data;
 
+import java.util.Date;
+@Data
 public class Article {
     private String uuid;
 

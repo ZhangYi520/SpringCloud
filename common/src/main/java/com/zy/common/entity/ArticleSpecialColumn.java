@@ -1,5 +1,8 @@
 package com.zy.common.entity;
 
+import lombok.Data;
+
+@Data
 public class ArticleSpecialColumn {
     private String uuid;
 

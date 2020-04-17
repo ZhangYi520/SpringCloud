@@ -1,5 +1,6 @@
 package com.zy.common.dao;
 
+import com.zy.common.entity.User;
 import com.zy.common.entity.Voc;
 import org.apache.ibatis.annotations.Param;
 

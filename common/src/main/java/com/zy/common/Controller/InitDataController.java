@@ -5,9 +5,12 @@ import com.zy.common.base.com.Cons;
 import com.zy.common.base.util.RedisUtil;
 import com.zy.common.base.util.ReturnResult;
 import com.zy.common.entity.Voc;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
@@ -21,6 +24,9 @@ import java.util.Map;
 @RequestMapping("/initData")
 //@CrossOrigin(origins = "*", maxAge = 3600)//就是这个注解
 public class InitDataController {
+
+    private Logger log = LoggerFactory.getLogger(this.getClass());
+
     @Autowired
     RedisUtil redisUtil;
 
@@ -61,7 +67,8 @@ public class InitDataController {
     }
 
     @GetMapping("/getWriteBlogsData")
-    public ReturnResult getWriteBlogsData() {
+    public ReturnResult getWriteBlogsData(@RequestParam("aa") String aa) {
+        log.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"+aa);
         try {
             Map<String,List<Voc>> map = new HashMap<>();
             map.put("flzl",vocServiceImpl.getSonListByVocCode(Cons.FLZL));

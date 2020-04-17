@@ -1,6 +1,9 @@
 package com.zy.common.dao;
 
+import com.zy.common.entity.Article;
 import com.zy.common.entity.ArticleSpecialColumn;
+
+import java.util.List;
 
 public interface ArticleSpecialColumnMapper {
     int deleteByPrimaryKey(String id);
@@ -14,4 +17,10 @@ public interface ArticleSpecialColumnMapper {
     int updateByPrimaryKeySelective(ArticleSpecialColumn record);
 
     int updateByPrimaryKey(ArticleSpecialColumn record);
+
+    /**
+     * 批量插入
+     * @param sc
+     */
+    void insertAll(List<ArticleSpecialColumn> sc);
 }

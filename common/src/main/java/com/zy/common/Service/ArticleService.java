@@ -5,5 +5,7 @@ import com.zy.common.vo.ArticleVo;
 
 public interface ArticleService {
 
-    public ReturnResult add(ArticleVo vo);
+    public ReturnResult saveArticle(ArticleVo vo);
+
+    ReturnResult demo();
 }

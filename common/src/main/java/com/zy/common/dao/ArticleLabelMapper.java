@@ -1,9 +1,10 @@
 package com.zy.common.dao;
 
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.zy.common.entity.ArticleLabel;
 
-public interface ArticleLabelMapper extends BaseMapper<ArticleLabel> {
+import java.util.List;
+
+public interface ArticleLabelMapper {
     int deleteByPrimaryKey(String id);
 
     int insert(ArticleLabel record);
@@ -15,4 +16,10 @@ public interface ArticleLabelMapper extends BaseMapper<ArticleLabel> {
     int updateByPrimaryKeySelective(ArticleLabel record);
 
     int updateByPrimaryKey(ArticleLabel record);
+
+    /**
+     * 批量插入
+     * @param labels
+     */
+    void insertAll(List<ArticleLabel> labels);
 }

@@ -1,5 +1,6 @@
 package com.zy.common.dao;
 
+import com.zy.common.entity.ArticleColleat;
 import com.zy.common.entity.ArticleComment;
 
 public interface ArticleCommentMapper {

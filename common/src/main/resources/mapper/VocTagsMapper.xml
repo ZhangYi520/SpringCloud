@@ -68,4 +68,21 @@
       type = #{type,jdbcType=VARCHAR}
     where uuid = #{uuid,jdbcType=VARCHAR}
   </update>
+  <select id="getAll" resultType="com.zy.common.entity.VocTags">
+    SELECT
+        uuid,
+        `name`,
+        type
+    FROM
+        voc_tags
+  </select>
+
+  <insert id="insertNotExist">
+    insert into voc_tags(uuid,`name`,`type`) VALUES
+    <foreach collection="list" item="item" index="index" separator=",">
+      (
+      #{item.uuid},#{item.name},#{item.type}
+      )
+    </foreach>
+  </insert>
 </mapper>
