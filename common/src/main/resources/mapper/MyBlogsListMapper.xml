@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zy.common.dao.MyBlogsListMapper" >
+
+  <select id="getList" resultType="com.zy.common.vo.MyBlogsListVo">
+    SELECT
+        a.uuid as article_uuid,
+        a.title,
+        a.content,
+        a.`status`,
+        a.create_by,
+        d.user_name,
+        a.create_time,
+        a.read_num,
+        b.uuid AS voc_uuid,
+        b.voc_code,
+        b.`name` AS voc_type_name,
+        count( c.article_uuid ) AS comment_num
+    FROM
+        article a
+        INNER JOIN `user` d ON d.uuid = a.create_by
+        LEFT JOIN voc b ON a.voc_type = b.uuid
+        LEFT JOIN article_comment c ON a.uuid = c.article_uuid
+    GROUP BY
+        a.uuid
+  </select>
+</mapper>

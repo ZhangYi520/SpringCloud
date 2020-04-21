@@ -2,10 +2,11 @@ package com.zy.common.base.util;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.Data;
 
 import java.io.Serializable;
 import java.util.List;
-
+@Data
 public class ReturnResult implements Serializable {
 
     private static final long serialVersionUID = 579490911008573336L;
@@ -21,6 +22,8 @@ public class ReturnResult implements Serializable {
 
     // 响应中的数据
     private Object data;
+
+    private Boolean success;
 
     public static ReturnResult build(Integer code, String msg, Object data) {
         return new ReturnResult(code, msg, data);
@@ -58,12 +61,14 @@ public class ReturnResult implements Serializable {
         this.code = code;
         this.msg = msg;
         this.data = data;
+        this.success=false;
     }
 
     public ReturnResult(Object data) {
         this.code = 200;
         this.msg = "OK";
         this.data = data;
+        this.success=true;
     }
 
     public String getMsg() {

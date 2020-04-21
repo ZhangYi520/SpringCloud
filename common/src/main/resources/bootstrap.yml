@@ -2,8 +2,9 @@ foo: 123456
 #启动2次，表示两个实例，方便测试负载均衡
 server:
   port: 9003
+  servlet:
+    context-path: /myBlogs
 #  port: 9004
-
 
 spring:
   application:
