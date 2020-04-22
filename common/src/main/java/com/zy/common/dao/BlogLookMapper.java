@@ -1,5 +1,9 @@
 package com.zy.common.dao;
 
+import com.zy.common.vo.ArticleLookVo;
+import com.zy.common.vo.ArticleVo;
+import org.apache.ibatis.annotations.Param;
+
 /**
  * @program: SpringCloud
  * @description: 查看博客dao层
@@ -8,5 +12,5 @@ package com.zy.common.dao;
  */
 public interface BlogLookMapper {
     /**查看博客内容*/
-    void blogLook(String id);
+    ArticleLookVo blogLook(@Param("uuid") String id);
 }

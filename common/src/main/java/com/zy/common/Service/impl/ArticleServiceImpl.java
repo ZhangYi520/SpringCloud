@@ -49,8 +49,9 @@ public class ArticleServiceImpl implements ArticleService {
         BeanUtils.copyProperties(vo,article);
         article.setUuid(UUIDUtils.getUUID());
         article.setStatus("1");
-        article.setCreateBy("zy");
+        article.setCreateBy("asdsads");
         article.setCreateTime(new Date());
+        article.setUpdateTime(new Date());
         articleMapper.insertSelective(article);
 
          /**2、添加文章标签信息,文章标签是独立的，每个用户添加文章时，先判断当前用户标签库中voc_tags是否存在，不存在则添加进去
