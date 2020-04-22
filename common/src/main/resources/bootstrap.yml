@@ -82,7 +82,7 @@ eureka:
     appname: ${spring.application.name}
   client:
     service-url:
-      #      defaultZone: http://admin:1234@127.0.0.1:8890/eureka/,http://admin:1234@127.0.0.1:8891/eureka/
+#      defaultZone: http://127.0.0.1:8001/eureka/,http://127.0.0.1:8002/eureka/
       defaultZone: http://pre1:8001/eureka/,http://pre2:8002/eureka/
 #注册中心指向end
 

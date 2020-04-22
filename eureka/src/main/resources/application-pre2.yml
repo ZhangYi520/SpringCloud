@@ -3,8 +3,8 @@ server:
 spring:
   application:
     name: eureka
-  profiles:
-    active: pre2
+#  profiles:
+#    active: pre2
 #spring:
 #  security:
 #    basic:
@@ -18,11 +18,12 @@ eureka:
     enable-self-preservation: false
   instance:
     hostname: pre2
+#    hostname: 127.0.0.1
   client:
     registerWithEureka: false
     fetchRegistry: false
     service-url:
-      #      defaultZone: http://${spring.security.user.name}:${spring.security.user.password}@${eureka.instance.hostname}:${server.port}/eureka/
+#      defaultZone: http://127.0.0.1:8081/eureka/
       defaultZone: http://pre1:8001/eureka/
 
 
