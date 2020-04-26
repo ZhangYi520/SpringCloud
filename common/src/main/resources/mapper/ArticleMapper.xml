@@ -70,6 +70,9 @@
       <if test="updateTime != null">
         update_time,
       </if>
+      <if test="readNum != null">
+        read_num,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="uuid != null">
@@ -101,6 +104,9 @@
       </if>
       <if test="updateTime != null">
         #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="readNum != null">
+        #{readNum},
       </if>
     </trim>
   </insert>

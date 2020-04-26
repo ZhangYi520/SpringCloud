@@ -46,5 +46,19 @@ public class Cons {
         FBXS_FSKJ, FBXS_GK, FBXS_SM, FBXS_VIPKJ
     }
 
+    /**
+     * 文章的各种状态常量
+     * redNum：阅读数
+     * FB：发布
+     * CG：草稿
+     * SC：删除
+     */
+    public static interface ARTICLE_STATUS{
+        public static String FB="1";
+        public static String CG="2";
+        public static String SC="3";
+
+        public static Integer READNUM=0;
+    }
 
 }

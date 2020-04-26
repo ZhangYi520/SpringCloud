@@ -33,14 +33,14 @@ public class 下班  extends JFrame{
             this.setDefaultCloseOperation(EXIT_ON_CLOSE); //设置关闭方式 如果不设置的话 似乎关闭窗口之后不会退出程序
             JPanel jPanel = new JPanel();//得到窗口的容器
             jPanel.setLayout(null);
-            jPanel.setSize(580,30);
+            jPanel.setSize(650,30);
             JLabel l1 = new JLabel();    //创建一个标签 并设置初始内容
             l1.setForeground(Color.blue);
             Font font = new Font(null, Font.BOLD, 30);
             l1.setFont(font);
             l1.setBounds(15,0,580,30);
             JButton b1 = new JButton("×");
-            b1.setBounds(530,0,50,30);
+            b1.setBounds(580,0,50,30);
             b1.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {

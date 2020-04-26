@@ -25,6 +25,8 @@ public class Article {
 
     private Date updateTime;
 
+    private Integer readNum;
+
     public String getUuid() {
         return uuid;
     }

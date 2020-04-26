@@ -2,6 +2,7 @@ package com.zy.common.Service.impl;
 
 import com.netflix.discovery.converters.Auto;
 import com.zy.common.Service.ArticleService;
+import com.zy.common.base.com.Cons;
 import com.zy.common.base.util.BeanUtils;
 import com.zy.common.base.util.ReturnResult;
 import com.zy.common.base.util.UUIDUtils;
@@ -48,7 +49,9 @@ public class ArticleServiceImpl implements ArticleService {
         Article article = new Article();
         BeanUtils.copyProperties(vo,article);
         article.setUuid(UUIDUtils.getUUID());
-        article.setStatus("1");
+        article.setStatus(vo.getStatus());
+        article.setReadNum(Cons.ARTICLE_STATUS.READNUM);
+        //这里是登陆用户id，登陆未做，留着
         article.setCreateBy("asdsads");
         article.setCreateTime(new Date());
         article.setUpdateTime(new Date());
@@ -115,8 +118,7 @@ public class ArticleServiceImpl implements ArticleService {
         });
         articleSpecialColumnMapper.insertAll(sc);
 
-
-        return ReturnResult.ok("完成");
+        return ReturnResult.ok(article);
     }
 
     @Override

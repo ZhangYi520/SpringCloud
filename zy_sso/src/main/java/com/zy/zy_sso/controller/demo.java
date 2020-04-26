@@ -3,7 +3,7 @@ package com.zy.zy_sso.controller;
 import org.apache.http.entity.StringEntity;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.apache.shiro.authz.annotation.RequiresRoles;
-import org.openjdk.jol.info.ClassLayout;
+//import org.openjdk.jol.info.ClassLayout;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -39,9 +39,9 @@ public class demo {
 
 class 类 {
 //    ReentrantLock r=new ReentrantLock();
-    public static void main(String[] args) {
-        System.out.println(ClassLayout.parseInstance(T.class).toPrintable());
-    }
+//    public static void main(String[] args) {
+//        System.out.println(ClassLayout.parseInstance(T.class).toPrintable());
+//    }
 }
 
 class Test{
