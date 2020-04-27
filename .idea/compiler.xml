@@ -8,6 +8,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="common" />
+        <module name="common_thirdparty" />
         <module name="config_client" />
         <module name="config_server" />
         <module name="consumer" />
@@ -22,6 +23,7 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="common" target="1.8" />
+      <module name="common_thirdparty" target="1.8" />
       <module name="config_client" target="1.8" />
       <module name="config_server" target="1.8" />
       <module name="consumer" target="1.8" />

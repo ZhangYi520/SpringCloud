@@ -6,10 +6,12 @@ import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.client.j2se.MatrixToImageWriter;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
+import com.netflix.discovery.converters.Auto;
 import com.zy.common.Service.impl.DemoServiceImpl;
 import com.zy.common.base.util.RedisUtil;
 import com.zy.common.base.util.qrCode.QRCodeUtil;
 import com.zy.common.entity.User;
+import com.zy.common.serviceCall.CallDemo;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -43,12 +45,14 @@ public class DemoController {
     @Value("${foo}")
     String foo;
 
+    @Autowired
+    private CallDemo callDemo;
 
     @GetMapping("/hi")
-    public User hi1(@RequestParam("uuid") String uuid) {
-        System.out.println(redisUtil);
-        System.out.println(demoServiceImpl);
-        return demoServiceImpl.getUser(uuid);
+    public Object hi1(@RequestParam("uuid") String uuid) {
+        /**服务调用*/
+        callDemo.demo();
+        return "0";
     }
 
 

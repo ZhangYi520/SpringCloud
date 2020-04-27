@@ -27,13 +27,13 @@ spring:
     password: Root!!2019
     driver-class-name: com.mysql.cj.jdbc.Driver
 #    filters: stat,wall,log4j
-#    hikari:
-#      connection-timeout: 60000
-#      idle-timeout: 60000
-#      max-lifetime: 600000
-#      maximum-pool-size: 10
+    hikari:
+      connection-timeout: 60000
+      idle-timeout: 60000
+      max-lifetime: 600000
+      maximum-pool-size: 10
 #      read-only: true
-#      validation-timeout: 3000
+      validation-timeout: 3000
 #    initialSize: 5
 #    initialization-mode: always
 #    maxActive: 20

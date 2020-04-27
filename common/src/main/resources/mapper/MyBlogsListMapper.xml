@@ -23,5 +23,7 @@
         LEFT JOIN article_comment c ON a.uuid = c.article_uuid
     GROUP BY
         a.uuid
+    ORDER BY
+        a.create_time DESC
   </select>
 </mapper>

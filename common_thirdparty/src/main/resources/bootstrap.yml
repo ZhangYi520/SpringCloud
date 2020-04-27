@@ -1,0 +1,16 @@
+#第三方服务调用中心，如邮件发送，短信发送等，集成了mq、redis等第三方中间件
+server:
+  port: 9005
+spring:
+  application:
+    name: spring-cloud-common-thirdparty
+
+#注册中心指向start    
+eureka:
+  instance:
+    instance-id: spring-cloud-common-thirdparty
+    appname: ${spring.application.name}
+  client:
+    service-url:
+      defaultZone: http://pre1:8001/eureka/,http://pre2:8002/eureka/
+#注册中心指向end

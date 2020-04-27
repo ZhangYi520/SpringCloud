@@ -24,4 +24,8 @@
             a.uuid = #{uuid}
             LIMIT 1
   </select>
+
+    <update id="addRedNum" parameterType="java.lang.String">
+        update article set read_num=read_num+1 where uuid=#{id}
+    </update>
 </mapper>

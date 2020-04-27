@@ -25,6 +25,7 @@ public class BlogLookServiceImpl implements BlogLookService {
     @Override
     public ReturnResult blogLook(String id) {
         Map<String,Object> map=new HashMap<>();
+        blogLookMapper.addRedNum(id);
         ArticleLookVo article=blogLookMapper.blogLook(id);
         map.put("article",article);
         return ReturnResult.ok(map);

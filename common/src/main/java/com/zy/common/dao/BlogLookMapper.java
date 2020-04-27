@@ -13,4 +13,7 @@ import org.apache.ibatis.annotations.Param;
 public interface BlogLookMapper {
     /**查看博客内容*/
     ArticleLookVo blogLook(@Param("uuid") String id);
+
+    /**阅读数+1*/
+    void addRedNum(String id);
 }

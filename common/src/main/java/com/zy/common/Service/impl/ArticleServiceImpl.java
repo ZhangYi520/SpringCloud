@@ -19,6 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.*;
 
 /**
@@ -53,8 +54,8 @@ public class ArticleServiceImpl implements ArticleService {
         article.setReadNum(Cons.ARTICLE_STATUS.READNUM);
         //这里是登陆用户id，登陆未做，留着
         article.setCreateBy("asdsads");
-        article.setCreateTime(new Date());
-        article.setUpdateTime(new Date());
+        article.setCreateTime(LocalDateTime.now());
+        article.setUpdateTime(LocalDateTime.now());
         articleMapper.insertSelective(article);
 
          /**2、添加文章标签信息,文章标签是独立的，每个用户添加文章时，先判断当前用户标签库中voc_tags是否存在，不存在则添加进去
@@ -124,6 +125,10 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     public ReturnResult demo() {
         return articleMapper.testq();
+    }
+
+    public static void main(String[] args) {
+        System.out.println(LocalDateTime.now());
     }
 }
 
