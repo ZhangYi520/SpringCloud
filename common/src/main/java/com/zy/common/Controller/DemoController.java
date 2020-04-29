@@ -10,6 +10,7 @@ import com.netflix.discovery.converters.Auto;
 import com.zy.common.Service.impl.DemoServiceImpl;
 import com.zy.common.base.util.RedisUtil;
 import com.zy.common.base.util.qrCode.QRCodeUtil;
+import com.zy.common.entity.Article;
 import com.zy.common.entity.User;
 import com.zy.common.serviceCall.CallDemo;
 import lombok.Data;
@@ -25,6 +26,7 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.Serializable;
+import java.lang.reflect.Type;
 import java.nio.file.Path;
 import java.util.*;
 
@@ -56,7 +58,16 @@ public class DemoController {
 
 
     public static void main ( String[] args ) {
-        System.out.println(calcString("HC11N2"));
+//        Article a = new Article();
+//        Type t = ((Type)getClass());
+//        System.out.println();
+    }
+    public class MyUtils<T> {
+        private T type_variable;
+        MyUtils() throws Exception{
+            Type t = getClass().getDeclaredField("type_variable").getGenericType();
+            System.out.println(t.toString());
+        }
     }
 
 
@@ -127,15 +138,7 @@ public class DemoController {
 
             if(i==list.size()-1){
                 String s1 = list.get(i).toString();
-                int num=0;
-                switch (s1){
-                    case "C":num=12;break;
-                    case "H":num=1;break;
-                    case "O":num=16;break;
-                    case "N":num=14;break;
-                    default:num=0;
-                }
-                res+=num;
+                res+=caseNum(s1);
                 break;
             }
 
@@ -144,27 +147,11 @@ public class DemoController {
             boolean str1 = isStr(s1.charAt(0));
             boolean str2 = isStr(s2.charAt(0));
             if(str1 && str2){
-                int num=0;
-                switch (s1){
-                    case "C":num=12;break;
-                    case "H":num=1;break;
-                    case "O":num=16;break;
-                    case "N":num=14;break;
-                    default:num=0;
-                }
-                res+=num;
+                res+=caseNum(s1);
                 index=1;
                 continue;
             }else if(str1 && !str2){
-                int num=0;
-                switch (s1){
-                    case "C":num=12;break;
-                    case "H":num=1;break;
-                    case "O":num=16;break;
-                    case "N":num=14;break;
-                    default:num=0;
-                }
-                res+=(num*Integer.parseInt(s2));
+                res+=(caseNum(s1)*Integer.parseInt(s2));
                 index=2;
             }
 
@@ -173,11 +160,33 @@ public class DemoController {
     }
 
 
+    /**
+     * 判断char字符是否为字符串
+     * @param c
+     * @return
+     */
     public static boolean isStr(char c){
         int i=(int)c;
         if(i>=65 && i<=90){
             return true;
         }
         return false;
+    }
+
+    /**
+     * 字母转换成对应的分子质量
+     * @param c
+     * @return
+     */
+    public static int caseNum(String c){
+        int num=0;
+        switch (c){
+            case "C":num=12;break;
+            case "H":num=1;break;
+            case "O":num=16;break;
+            case "N":num=14;break;
+            default:num=0;
+        }
+        return num;
     }
 }

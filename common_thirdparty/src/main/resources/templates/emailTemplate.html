@@ -1,0 +1,12 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>邮件模板</title>
+</head>
+<body>
+您好<p th:text="${id}"></p>，您的博客XXX已经发布成功。
+<a href="#" th:href="@{http://www.baidu.com/register/{id}(id=${id})}">点击查看</a>
+</body>
+</html>
