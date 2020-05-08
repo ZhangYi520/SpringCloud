@@ -20,6 +20,7 @@ spring:
 eureka:
   instance:
     instance-id: spring-cloud-common-thirdparty
+
     appname: ${spring.application.name}
   client:
     service-url:
