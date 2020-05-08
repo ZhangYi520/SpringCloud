@@ -1,6 +1,7 @@
 spring:
   profiles:
     #高可用1
-#    active: pre1
+    active: pre1
 #    高可用2
-    active: pre2
+#    active: pre2
+#
