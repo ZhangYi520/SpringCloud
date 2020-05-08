@@ -17,7 +17,7 @@ eureka:
 zuul:
   routes:
     api-a:
-      path: /a/**
+      path: /spring-cloud-common/**
       serviceId: spring-cloud-common
     api-b:
       path: /b/**

@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
 
-//@Component
+@Component
 public class MyFilter extends ZuulFilter {
     private Logger log = LoggerFactory.getLogger(this.getClass());
 
@@ -24,6 +24,7 @@ public class MyFilter extends ZuulFilter {
      */
     @Override
     public String filterType() {
+//        System.err.println("1");
         return "pre";//路由前调用
     }
 
@@ -34,6 +35,7 @@ public class MyFilter extends ZuulFilter {
      */
     @Override
     public int filterOrder() {
+//        System.err.println("2");
         return 0;
     }
 
@@ -44,6 +46,7 @@ public class MyFilter extends ZuulFilter {
      */
     @Override
     public boolean shouldFilter() {
+//        System.err.println("3");
         return true;
     }
 
@@ -55,11 +58,12 @@ public class MyFilter extends ZuulFilter {
      */
     @Override
     public Object run() throws ZuulException {
+        System.err.println("4");
         RequestContext ctx = RequestContext.getCurrentContext();
         HttpServletRequest request = ctx.getRequest();
         log.info(String.format("%s >>> %s", request.getMethod(), request.getRequestURL().toString()));
-        Object accessToken = request.getParameter("token");
-        if (accessToken == null) {
+        Object accessToken = request.getHeader("accessToken");
+        if (accessToken == null || "".equals(accessToken)) {
             log.warn("token is empty");
             ctx.setSendZuulResponse(false);
             ctx.setResponseStatusCode(401);
@@ -67,10 +71,11 @@ public class MyFilter extends ZuulFilter {
                 ctx.getResponse().getWriter().write("token is empty");
             } catch (Exception e) {
             }
-
+            return null;
+        }else{
+            log.info("token:"+accessToken);
             return null;
         }
-        log.info("ok");
-        return null;
+
     }
 }
