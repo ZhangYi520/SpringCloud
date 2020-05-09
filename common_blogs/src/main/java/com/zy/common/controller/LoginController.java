@@ -24,11 +24,10 @@ public class LoginController {
     private LoginServiceCall loginServiceCall;
 
     @PostMapping("/login")
-    public ReturnResult login(@RequestBody LoginVo vo){
-        System.err.println(vo.toString());
-        String login = loginServiceCall.login(JSON.toJSONString(vo));
-//        String login = loginServiceCall.login(vo);
-
+    public ReturnResult login(@RequestParam("json") String json){
+        System.err.println(json);
+        String login = loginServiceCall.login(json);
         return ReturnResult.ok(login);
     }
+
 }
