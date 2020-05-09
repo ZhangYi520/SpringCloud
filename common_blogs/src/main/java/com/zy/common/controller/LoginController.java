@@ -26,8 +26,8 @@ public class LoginController {
     @PostMapping("/login")
     public ReturnResult login(@RequestBody LoginVo vo){
         System.err.println(vo.toString());
-//        String login = loginServiceCall.login(JSON.toJSONString(vo));
-        String login = loginServiceCall.login(vo);
+        String login = loginServiceCall.login(JSON.toJSONString(vo));
+//        String login = loginServiceCall.login(vo);
 
         return ReturnResult.ok(login);
     }

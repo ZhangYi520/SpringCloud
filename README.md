@@ -6,7 +6,7 @@
     config_client ：配置中心的客户端demo
     config_server : 配置中心的服务端
     globalconfig : 配置中心文件管理包
-    common : 博客服务，用于该博客的所有操作
+    common_blogs: 博客服务，用于该博客的所有操作
     common_login：单点登录服务
     common_thirdparty：第三方接口服务
     consumer : 消费者demo，包含了Feign、熔断
