@@ -20,5 +20,5 @@ zuul:
       path: /spring-cloud-common/**
       serviceId: spring-cloud-common
     api-b:
-      path: /b/**
-      serviceId: spring-cloud-consumer
+      path: /spring-cloud-common-login/**
+      serviceId: spring-cloud-common-login

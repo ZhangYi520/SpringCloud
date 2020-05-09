@@ -1,6 +1,8 @@
 #登录服务，sso
 server:
   port: 9006
+  servlet:
+    context-path: /sso
 spring:
   application:
     name: spring-cloud-common-login

@@ -8,7 +8,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
-
+/**
+ * Zuul过滤器，必须继承ZuulFilter父类。
+ * 当前类型的对象必须交由Spring容器管理。使用@Component注解描述。
+ * 继承父类后，必须实现父类中定义的4个抽象方法。
+ * shouldFilter、 run、 filterType、 filterOrder
+ */
 @Component
 public class MyFilter extends ZuulFilter {
     private Logger log = LoggerFactory.getLogger(this.getClass());
@@ -52,6 +57,7 @@ public class MyFilter extends ZuulFilter {
 
     /**
      * 过滤器的具体逻辑。可用很复杂，包括查sql，nosql去判断该请求到底有没有权限访问。
+     *
      *
      * @return
      * @throws ZuulException

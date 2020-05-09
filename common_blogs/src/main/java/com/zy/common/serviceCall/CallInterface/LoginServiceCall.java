@@ -1,9 +1,11 @@
 package com.zy.common.serviceCall.CallInterface;
 
+import com.zy.common.vo.LoginVo;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
 /**
@@ -16,6 +18,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 @FeignClient(value = "spring-cloud-common-login")
 public interface LoginServiceCall {
 
-    @PostMapping("/login/into")
-    public String login(@RequestParam(value = "json") String json);
+    @PostMapping("/sso/login/into")
+    public String login(@RequestBody LoginVo vo);
 }

@@ -1,5 +1,6 @@
 package com.zy.common_login.controller;
 
+import com.zy.common_login.vo.LoginVo;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -13,8 +14,8 @@ import org.springframework.web.bind.annotation.*;
 public class LoginController {
 
     @PostMapping("/into")
-    public String login(@RequestParam(value = "json") String json){
-        System.err.println(json);
-        return "json:"+json;
+    public String login(@RequestBody LoginVo vo){
+        System.err.println(vo);
+        return "json:"+vo;
     }
 }
