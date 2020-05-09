@@ -51,28 +51,28 @@ spring:
 #    useGlobalDataSourceStat: true
 #    validationQuery: SELECT 1 FROM DUAL
 
-    #Rabbitmq配置
-    rabbitmq:
-      host: 47.107.233.154
-      port: 5672
-      username: admin
-      password: admin
-      virtual-host: my_vhost
-      #\u6D88\u606F\u53D1\u9001\u548C\u63A5\u6536\u786E\u8BA4
-      publisher-confirms: true
-      publisher-returns: true
-      listener:
-        direct:
-          acknowledge-mode: manual
-        simple:
-          acknowledge-mode: manual
+  #Rabbitmq配置
+  rabbitmq:
+    host: 47.107.233.154
+    port: 5672
+    username: admin
+    password: admin
+    virtual-host: my_vhost
+    #\u6D88\u606F\u53D1\u9001\u548C\u63A5\u6536\u786E\u8BA4
+    publisher-confirms: true
+    publisher-returns: true
+    listener:
+      direct:
+        acknowledge-mode: manual
+      simple:
+        acknowledge-mode: manual
 
-    #redis
-    redis:
-      database: 0
-      host: 47.107.233.154
-      password: redis_123456
-      port: 6379
+  #redis
+  redis:
+    database: 0
+    host: 47.107.233.154
+    password: redis_123456
+    port: 6379
 
 
 #注册中心指向start

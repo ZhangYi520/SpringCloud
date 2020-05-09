@@ -1,13 +1,23 @@
 package com.zy.zuul.config;
 
+import com.alibaba.fastjson.JSON;
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
 import com.netflix.zuul.exception.ZuulException;
+import com.zy.zuul.base.utils.ReturnResult;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
+import org.springframework.util.AntPathMatcher;
+import org.springframework.util.PathMatcher;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
 /**
  * Zuul过滤器，必须继承ZuulFilter父类。
  * 当前类型的对象必须交由Spring容器管理。使用@Component注解描述。
@@ -17,6 +27,17 @@ import javax.servlet.http.HttpServletRequest;
 @Component
 public class MyFilter extends ZuulFilter {
     private Logger log = LoggerFactory.getLogger(this.getClass());
+
+    /**
+     * 放行地址
+     */
+    private List<String> paths;
+    public MyFilter() {
+        super();
+        paths = new ArrayList<>();
+        paths.add("/spring-cloud-common-login/sso/login/into");
+
+    }
 
     /**
      * 返回一个字符串代表过滤器的类型，在zuul中定义了四种不同生命周期的过滤器类型
@@ -51,10 +72,21 @@ public class MyFilter extends ZuulFilter {
      */
     @Override
     public boolean shouldFilter() {
-//        System.err.println("3");
-        return true;
+        RequestContext ctx = RequestContext.getCurrentContext();
+        HttpServletRequest request = ctx.getRequest();
+        String uri = request.getRequestURI().toString();
+        PathMatcher matcher = new AntPathMatcher();
+        /**匹配当前路径是否在放行地址中，
+         * 如果在，则最后optional有数据，optional.isPresent()==true,就不用拦截*/
+        Optional<String> optional =paths.stream().filter(t->matcher.match(t,uri)).findFirst();
+        return !optional.isPresent();
     }
 
+    public static void main(String[] args) {
+        PathMatcher matcher = new AntPathMatcher();
+        System.out.println(matcher.match("/login/**", "/xxx/login"));
+
+    }
     /**
      * 过滤器的具体逻辑。可用很复杂，包括查sql，nosql去判断该请求到底有没有权限访问。
      *
@@ -64,20 +96,29 @@ public class MyFilter extends ZuulFilter {
      */
     @Override
     public Object run() throws ZuulException {
-//        System.err.println("4");
+        log.info("——————————————开始拦截——————————————");
         RequestContext ctx = RequestContext.getCurrentContext();
         HttpServletRequest request = ctx.getRequest();
-        log.info(String.format("%s >>> %s", request.getMethod(), request.getRequestURL().toString()));
+
+        log.info(String.format("%s >>> %s", request.getMethod(), request.getRequestURI()));
         Object accessToken = request.getHeader("accessToken");
-        if (accessToken == null || "".equals(accessToken)) {
+//        accessToken=null;
+        if (accessToken == null || "".equals(accessToken) || "null".equals(accessToken)) {
             log.warn("token is empty");
-            ctx.setSendZuulResponse(false);
-            ctx.setResponseStatusCode(401);
             try {
-                ctx.getResponse().getWriter().write("token is empty");
+//            HttpServletResponse response = ctx.getResponse();
+//            response.reset();
+            ctx.setSendZuulResponse(false);
+            ctx.setResponseStatusCode(200);
+            ctx.getResponse().setHeader("Content-type", "text/html;charset=UTF-8");
+//            response.getWriter().write(JSON.toJSONString(ReturnResult.build(401, "未授权")));
+          ctx.getResponse().getWriter().write(JSON.toJSONString(ReturnResult.build(401, "未授权")));
+//                ctx.getResponse().getWriter().write("未授权");
+
             } catch (Exception e) {
             }
             return null;
+//            return ReturnResult.build(401, "未授权");
         }else{
             log.info("token:"+accessToken);
             return null;

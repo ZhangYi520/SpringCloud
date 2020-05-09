@@ -4,6 +4,14 @@ spring:
   application:
     name: spring-cloud-zuul
 
+
+  #redis
+  redis:
+    database: 0
+    host: 47.107.233.154
+    password: redis_123456
+    port: 6379
+
 #注册中心指向start    
 eureka:
   instance:
