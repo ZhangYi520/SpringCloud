@@ -106,15 +106,15 @@ public class MyFilter extends ZuulFilter {
         log.info(String.format("%s >>> %s", request.getMethod(), request.getRequestURI()));
         String accessToken = request.getHeader("accessToken");
 //        accessToken=null;
-//        if (accessToken == null || "".equals(accessToken) || "null".equals(accessToken)) {
-          if (StringUtils.isBlank(accessToken)) {
+        if (accessToken == null || "".equals(accessToken) || "null".equals(accessToken)) {
+//          if (StringUtils.isBlank(accessToken)) {
             log.warn("token is empty");
             try {
                 ctx.setSendZuulResponse(false);
                 ctx.setResponseStatusCode(200);
                 ctx.getResponse().setHeader("Content-type", "text/html;charset=UTF-8");
                 ctx.getResponse().getWriter().write(JSON.toJSONString(ReturnResult.build(401, "未授权")));
-
+                return null;
             } catch (Exception e) {
             }
             return null;
