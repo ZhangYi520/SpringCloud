@@ -39,6 +39,7 @@ public class MyFilter extends ZuulFilter {
         super();
         paths = new ArrayList<>();
         paths.add("/spring-cloud-common-login/sso/login/into");
+        paths.add("/spring-cloud-common-thirdparty/**");
 
     }
 

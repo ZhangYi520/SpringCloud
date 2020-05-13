@@ -1,3 +1,5 @@
+
+
 server:
   port: 9004
 spring:
@@ -30,3 +32,8 @@ zuul:
     api-b:
       path: /spring-cloud-common-login/**
       serviceId: spring-cloud-common-login
+    api-c:
+      path: /spring-cloud-common-thirdparty/**
+      serviceId: spring-cloud-common-thirdparty
+
+

@@ -1,4 +1,4 @@
-package com.zy.common.base.util;
+package com.zy.common_thirdparty.base.utils;
 
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
@@ -6,6 +6,7 @@ import org.springframework.util.CollectionUtils;
 
 import javax.annotation.Resource;
 import java.util.concurrent.TimeUnit;
+
 /**
  * redis 工具类
  * @Author ZhangYi
@@ -126,4 +127,8 @@ public class RedisUtil {
             return false;
         }
     }
+
+//    public static void main(String[] args) {
+//        redisTemplate.opsForValue().get(key)
+//    }
 }

@@ -1,0 +1,14 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>邮件模板</title>
+</head>
+<body>
+
+<p>【<span th:text="${name}"></span>】&nbsp;&nbsp;您好，欢迎注册<span th:text="${name}"></span>博客，本次验证码为：<b th:text="${vcode}"></b>,过期时间为5分钟。</p>
+<!--您好<p th:text="${id}"></p>，您的博客XXX已经发布成功。-->
+<!--点击查看</a>-->
+</body>
+</html>

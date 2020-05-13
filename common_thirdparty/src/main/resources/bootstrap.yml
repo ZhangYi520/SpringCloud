@@ -1,3 +1,8 @@
+#项目版本信息
+myblog:
+  name: YB
+  version: 1.0
+
 #第三方服务调用中心，如邮件发送，短信发送等，集成了mq、redis等第三方中间件
 server:
   port: 9005
@@ -15,6 +20,13 @@ spring:
     username: 1073988580@qq.com
     #QQ邮箱中开通的服务密码，不是QQ密码
     password: mtfqotlxsystbadb
+
+  #redis
+  redis:
+    database: 0
+    host: 47.107.233.154
+    password: redis_123456
+    port: 6379
 
 #注册中心指向start    
 eureka:
