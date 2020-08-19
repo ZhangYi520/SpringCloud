@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 @RequestMapping("/article")
 @ResponseBody
-@CrossOrigin(origins = "*", maxAge = 3600)//就是这个注解
+//@CrossOrigin(origins = "*", maxAge = 3600)//就是这个注解
 public class ArticleController {
 
     private Logger log = LoggerFactory.getLogger(this.getClass());

@@ -25,6 +25,9 @@ eureka:
 #注册中心指向end
 
 zuul:
+  host:
+    connect-timeout-millis: 10000
+    socket-timeout-millis: 60000
   routes:
     api-a:
       path: /spring-cloud-common/**

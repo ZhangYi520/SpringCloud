@@ -1,6 +1,7 @@
 #登录服务，sso
 server:
-  port: 9006
+#  port: 9006
+  port: 9007
   servlet:
     context-path: /sso
 spring:

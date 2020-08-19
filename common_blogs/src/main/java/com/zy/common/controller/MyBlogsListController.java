@@ -3,6 +3,7 @@ package com.zy.common.controller;
 import com.zy.common.Service.impl.MyBlogsListServiceImpl;
 import com.zy.common.base.util.ReturnResult;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -21,11 +22,16 @@ public class MyBlogsListController {
     @Autowired
     private MyBlogsListServiceImpl myBlogsListServiceImpl;
 
+    @Value("${server.port}")
+    private Integer port;
+
     @GetMapping("/getList")
     public ReturnResult getList(@RequestParam(name = "page",required = false) Integer page,
                                 @RequestParam(name = "pageSize",required = false) Integer pageSize){
         page=page==null?0:page;
         pageSize=pageSize==null?0:pageSize;
+
         return myBlogsListServiceImpl.getList(page,pageSize);
+//        return ReturnResult.ok(port);
     }
 }

@@ -1,5 +1,6 @@
 package com.zy.common_thirdparty.base.utils;
 
+import com.zy.common_thirdparty.base.Cons;
 import com.zy.common_thirdparty.base.ProjectVersion;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -46,7 +47,7 @@ public class EmailUtil {
     @Autowired
     private RedisUtil redisUtil;
 
-    private final static Long VCODE_EXP_TIME=1000*60*5L;
+    private final static Long VCODE_EXP_TIME=60*5L;
     /**
      * 发送文本邮件
      *
@@ -164,7 +165,7 @@ public class EmailUtil {
         try {
             mailSender.send(message);
 
-            redisUtil.set("vcode:"+to,vcode,VCODE_EXP_TIME);
+            redisUtil.set(Cons.REDIS_PREFIX.VCODE+to,vcode,VCODE_EXP_TIME);
 //            System.out.println(redisUtil.get("vcode:"+to));
             System.out.println("发送成功！");
         } catch (Exception e) {

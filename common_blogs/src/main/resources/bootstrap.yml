@@ -1,10 +1,11 @@
 foo: 123456
 #启动2次，表示两个实例，方便测试负载均衡
 server:
-  port: 9003
+#  port: 9003
+  port: 9001
   servlet:
     context-path: /myBlogs
-#  port: 9004
+
 
 spring:
   application:
@@ -29,11 +30,12 @@ spring:
 #    filters: stat,wall,log4j
     hikari:
       connection-timeout: 60000
-      idle-timeout: 60000
-      max-lifetime: 600000
+#      idle-timeout: 30000
+      max-lifetime: 60000
       maximum-pool-size: 10
 #      read-only: true
       validation-timeout: 3000
+      connection-test-query: SELECT 1
 #    initialSize: 5
 #    initialization-mode: always
 #    maxActive: 20
@@ -78,8 +80,14 @@ spring:
 #注册中心指向start
 eureka:
   instance:
-    instance-id: spring-cloud-common
+    # 实例id，换成不同的，可启动多个实例，便于负载均衡
+    instance-id: ${spring.application.name}:${server.port}
     appname: ${spring.application.name}
+
+    # 心跳检测检测与续约时间
+    # 测试时将值设置设置小些，保证服务关闭后注册中心能及时踢出服务
+    lease-renewal-interval-in-seconds: 1
+    lease-expiration-duration-in-seconds: 2
   client:
     service-url:
 #      defaultZone: http://127.0.0.1:8001/eureka/,http://127.0.0.1:8002/eureka/
