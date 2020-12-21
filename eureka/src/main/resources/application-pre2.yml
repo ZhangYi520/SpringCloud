@@ -3,16 +3,6 @@ server:
 spring:
   application:
     name: eureka
-#  profiles:
-#    active: pre2
-#spring:
-#  security:
-#    basic:
-#        enable: true
-#    user:
-#        name: admin
-#        password: 1234
-#    profiles: 127.0.0.1
 eureka:
   server:
     enable-self-preservation: false
